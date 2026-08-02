@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>单词故事生成器 · Word Story</title>
+  <title>Words to Story</title>
   <meta name="description" content="Made by Grayson Shen" />
   <style>
     :root {
@@ -123,7 +123,7 @@
 <body>
   <div class="app">
     <header class="hero">
-      <h1>📖 单词故事生成器</h1>
+      <h1>📖 把单词变成故事</h1>
       <p class="sub">Made by Grayson Shen</p>
     </header>
 
@@ -132,7 +132,7 @@
       <textarea id="words" rows="3" placeholder="例如：marriage, against, produce, attention, dull"></textarea>
 
       <div class="styles">
-        <span class="styles-label">故事风格</span>
+        <span class="styles-label">风格选择</span>
         <div class="chips" id="chips">
           <button class="chip active" data-style="荒诞脑洞" type="button">荒诞脑洞</button>
           <button class="chip" data-style="温馨治愈" type="button">温馨治愈</button>
@@ -142,7 +142,7 @@
       </div>
 
       <div class="actions">
-        <button id="exampleBtn" class="btn ghost" type="button">用示例试试</button>
+        <button id="exampleBtn" class="btn ghost" type="button">示例</button>
         <button id="genBtn" class="btn primary" type="button">✨ 生成故事</button>
       </div>
       <p class="hint" id="hint"></p>
@@ -150,7 +150,7 @@
 
     <section class="result card hidden" id="result">
       <div class="result-head">
-        <span class="badge">AI 生成</span>
+        
         <button id="copyBtn" class="btn small" type="button">复制</button>
       </div>
       <p class="story" id="story"></p>
