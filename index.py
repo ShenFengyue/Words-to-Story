@@ -13,33 +13,32 @@ MODEL = "deepseek-chat"
 
 
 SYSTEM_PROMPT = """
-You are an AI Chinese funny story generator for English learners.
+You are an AI Chinese absurd cold joke generator for English learners.
 
 Rules:
+1. The user can provide any number of English words (one or more).
+2. Translate every English word into a natural Chinese word or phrase.
+3. Create a short, funny, absurd Chinese story using ALL translated Chinese meanings.
+4. Every "cn" value in the JSON words array MUST appear exactly in the story.
+5. If the user provides only one or two words, freely add characters and background.
+6. The story should be memorable and suitable for vocabulary learning.
+7. Return ONLY valid JSON. No Markdown.
 
-1. The user provides one or more English words.
-2. Translate each English word into a natural Chinese word or phrase.
-3. Create a short absurd and memorable Chinese story using all translated meanings.
-4. Every "cn" value in the words array MUST appear exactly in the story.
-5. If there are only one or two words, freely add characters and background.
-6. The story should be funny, imaginative, and easy to remember.
-7. Output ONLY valid JSON. No markdown.
-
-Format:
+Output format:
 
 {
- "story":"Chinese story",
- "words":[
-   {
-    "word":"English word",
-    "cn":"Chinese meaning"
-   }
- ]
+  "story": "Chinese story",
+  "words": [
+    {
+      "word": "English word",
+      "cn": "Chinese meaning"
+    }
+  ]
 }
 """
 
 
-def parse_words(raw):
+def _parse_words(raw):
     if isinstance(raw, str):
         raw = raw.split()
 
@@ -65,48 +64,47 @@ def generate():
 
     if not api_key:
         return jsonify(
-            error="Missing DEEPSEEK_API_KEY"
+            error="服务器未配置 DEEPSEEK_API_KEY"
         ), 500
 
 
     data = request.get_json(silent=True) or {}
 
-    words = parse_words(
+    words = _parse_words(
         data.get("words", [])
     )
 
     style = data.get(
         "style",
-        "absurd imagination"
+        "荒诞脑洞"
     )
 
 
-    if len(words) == 0:
+    if not words:
         return jsonify(
-            error="Please input words"
+            error="请输入至少一个英文单词"
         ), 400
 
 
     user_prompt = f"""
-Style:
+Story style:
 {style}
 
-Words:
+English words:
 {", ".join(words)}
 
-Generate the JSON story.
+Generate JSON.
 """
 
 
     def stream():
 
-        full_text = ""
+        full_content = ""
 
 
         try:
 
-            response = requests.post(
-
+            resp = requests.post(
                 DEEPSEEK_URL,
 
                 headers={
@@ -117,37 +115,31 @@ Generate the JSON story.
                 },
 
                 json={
-
                     "model": MODEL,
 
                     "messages":[
-
                         {
                             "role":"system",
                             "content":SYSTEM_PROMPT
                         },
-
                         {
                             "role":"user",
                             "content":user_prompt
                         }
-
                     ],
 
                     "temperature":0.95,
 
                     "stream":True
-
                 },
 
                 stream=True,
 
                 timeout=60
-
             )
 
 
-            for line in response.iter_lines():
+            for line in resp.iter_lines():
 
                 if not line:
                     continue
@@ -180,7 +172,7 @@ Generate the JSON story.
 
                 if delta:
 
-                    full_text += delta
+                    full_content += delta
 
                     yield (
                         "data:"
@@ -197,13 +189,12 @@ Generate the JSON story.
                     )
 
 
-
             try:
 
-                start = full_text.find("{")
+                start = full_content.find("{")
 
                 result = json.loads(
-                    full_text[start:]
+                    full_content[start:]
                 )
 
 
@@ -228,7 +219,6 @@ Generate the JSON story.
 
             except Exception:
                 pass
-
 
 
         except Exception as e:
