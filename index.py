@@ -241,8 +241,10 @@ def _easter_egg_stream():
 
 def _easter_egg_shenzhe_stream():
     """小彩蛋：输入 申哲 时返回专属介绍，无需 API Key。"""
-   msg = """我是申哲，喜欢探索心理学、AI与科技的交叉领域。<br><br>
-保持好奇，独立思考，享受与有趣的人交流。<br><br>
+    msg = """我是申哲，喜欢探索心理学、AI与科技的交叉领域。
+
+保持好奇，独立思考，享受与有趣的人交流。
+
 人生信条：连接人群，创造价值。"""
 
     yield json.dumps({"type": "chunk", "text": msg}, ensure_ascii=False) + "\n"
