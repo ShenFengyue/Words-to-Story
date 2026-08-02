@@ -2,139 +2,78 @@ import os
 import json
 import requests
 
-from flask import (
-    Flask,
-    request,
-    render_template,
-    jsonify,
-    Response
-)
+from flask import Flask, request, render_template, jsonify, Response
 
 
-app = Flask(
-    __name__,
-    template_folder="templates"
-)
+app = Flask(__name__, template_folder="templates")
 
 
 DEEPSEEK_URL = "https://api.deepseek.com/chat/completions"
-
 MODEL = "deepseek-chat"
 
 
 SYSTEM_PROMPT = """
-You are a Chinese absurd cold joke and funny story generator.
+You are an AI Chinese funny story generator for English learners.
 
-Your task:
+Rules:
 
-1. The user will provide any number of English words (1 or more).
+1. The user provides one or more English words.
 2. Translate each English word into a natural Chinese word or phrase.
-   The translation does not need to be the dictionary first meaning.
-   Choose the meaning that works best in the story.
-3. Create a short, funny, absurd Chinese story using ALL translated Chinese meanings.
-4. The story should be imaginative, weird, and humorous, similar to a Chinese cold joke.
-5. Every "cn" value in the words array MUST appear exactly in the story text.
-   This is required because the frontend will highlight these words.
-6. If the user provides only a few words, freely add characters, scenes, and events to make the story complete.
-7. If the user provides many words, try to naturally include all of them.
-8. Return ONLY a valid JSON object.
-9. Do not use Markdown.
-10. Do not add explanations.
+3. Create a short absurd and memorable Chinese story using all translated meanings.
+4. Every "cn" value in the words array MUST appear exactly in the story.
+5. If there are only one or two words, freely add characters and background.
+6. The story should be funny, imaginative, and easy to remember.
+7. Output ONLY valid JSON. No markdown.
 
-Required JSON format:
+Format:
 
 {
-  "story": "Chinese funny story",
-  "words": [
-    {
-      "word": "original English word",
-      "cn": "Chinese meaning used in story"
-    }
-  ]
-}
-
-Example:
-
-Input:
-dog apple
-
-Output:
-
-{
-  "story":"一只狗发现了苹果，于是成立了一个专门保护苹果的公司。",
-  "words":[
-    {
-      "word":"dog",
-      "cn":"狗"
-    },
-    {
-      "word":"apple",
-      "cn":"苹果"
-    }
-  ]
+ "story":"Chinese story",
+ "words":[
+   {
+    "word":"English word",
+    "cn":"Chinese meaning"
+   }
+ ]
 }
 """
 
 
-def _parse_words(raw):
-
+def parse_words(raw):
     if isinstance(raw, str):
         raw = raw.split()
 
     result = []
 
-    for word in raw:
+    for w in raw:
+        w = str(w).strip().lower()
+        if w:
+            result.append(w)
 
-        word = str(word).strip().lower()
-
-        if word:
-            result.append(word)
-
-    # avoid too many tokens
     return result[:20]
-
 
 
 @app.route("/")
 def home():
-
-    return render_template(
-        "index.html"
-    )
+    return render_template("index.html")
 
 
-
-@app.route(
-    "/api/generate",
-    methods=["POST"]
-)
+@app.route("/api/generate", methods=["POST"])
 def generate():
 
-    api_key = os.environ.get(
-        "DEEPSEEK_API_KEY"
-    )
-
+    api_key = os.environ.get("DEEPSEEK_API_KEY")
 
     if not api_key:
-
         return jsonify(
             error="Missing DEEPSEEK_API_KEY"
-        ),500
+        ), 500
 
 
+    data = request.get_json(silent=True) or {}
 
-    data = request.get_json(
-        silent=True
-    ) or {}
-
-
-    words = _parse_words(
-        data.get(
-            "words",
-            []
-        )
+    words = parse_words(
+        data.get("words", [])
     )
-
 
     style = data.get(
         "style",
@@ -143,25 +82,26 @@ def generate():
 
 
     if len(words) == 0:
-
         return jsonify(
-            error="Please input at least one English word."
-        ),400
-
+            error="Please input words"
+        ), 400
 
 
     user_prompt = f"""
 Style:
 {style}
 
-English words:
+Words:
 {", ".join(words)}
 
-Generate the JSON result according to the rules.
+Generate the JSON story.
 """
 
 
-    def generate_stream():
+    def stream():
+
+        full_text = ""
+
 
         try:
 
@@ -170,13 +110,10 @@ Generate the JSON result according to the rules.
                 DEEPSEEK_URL,
 
                 headers={
-
-                    "Content-Type":
-                    "application/json",
-
                     "Authorization":
-                    f"Bearer {api_key}"
-
+                    f"Bearer {api_key}",
+                    "Content-Type":
+                    "application/json"
                 },
 
                 json={
@@ -210,14 +147,77 @@ Generate the JSON result according to the rules.
             )
 
 
-            if response.status_code != 200:
+            for line in response.iter_lines():
+
+                if not line:
+                    continue
+
+
+                line = line.decode("utf-8")
+
+
+                if not line.startswith("data:"):
+                    continue
+
+
+                payload = line[5:].strip()
+
+
+                if payload == "[DONE]":
+                    break
+
+
+                chunk = json.loads(payload)
+
+
+                delta = (
+                    chunk
+                    .get("choices",[{}])[0]
+                    .get("delta",{})
+                    .get("content","")
+                )
+
+
+                if delta:
+
+                    full_text += delta
+
+                    yield (
+                        "data:"
+                        +
+                        json.dumps(
+                            {
+                                "type":"text",
+                                "content":delta
+                            },
+                            ensure_ascii=False
+                        )
+                        +
+                        "\n\n"
+                    )
+
+
+
+            try:
+
+                start = full_text.find("{")
+
+                result = json.loads(
+                    full_text[start:]
+                )
+
 
                 yield (
                     "data:"
-                    + json.dumps(
+                    +
+                    json.dumps(
                         {
-                            "error":
-                            response.text
+                            "type":"done",
+                            "words":
+                            result.get(
+                                "words",
+                                []
+                            )
                         },
                         ensure_ascii=False
                     )
@@ -225,81 +225,21 @@ Generate the JSON result according to the rules.
                     "\n\n"
                 )
 
-                return
 
-
-
-            for line in response.iter_lines():
-
-                if not line:
-                    continue
-
-
-                decoded = line.decode(
-                    "utf-8"
-                )
-
-
-                if not decoded.startswith(
-                    "data:"
-                ):
-                    continue
-
-
-                content = decoded[5:].strip()
-
-
-                if content == "[DONE]":
-                    break
-
-
-
-                try:
-
-                    chunk = json.loads(
-                        content
-                    )
-
-
-                    delta = (
-                        chunk
-                        .get("choices",[{}])[0]
-                        .get("delta",{})
-                        .get("content","")
-                    )
-
-
-                    if delta:
-
-                        yield (
-                            "data:"
-                            +
-                            json.dumps(
-                                {
-                                    "content":delta
-                                },
-                                ensure_ascii=False
-                            )
-                            +
-                            "\n\n"
-                        )
-
-
-                except Exception:
-
-                    continue
+            except Exception:
+                pass
 
 
 
         except Exception as e:
-
 
             yield (
                 "data:"
                 +
                 json.dumps(
                     {
-                        "error":str(e)
+                        "type":"error",
+                        "message":str(e)
                     },
                     ensure_ascii=False
                 )
@@ -308,30 +248,17 @@ Generate the JSON result according to the rules.
             )
 
 
-
     return Response(
-
-        generate_stream(),
-
+        stream(),
         mimetype="text/event-stream",
-
         headers={
-
-            "Cache-Control":
-            "no-cache",
-
-            "X-Accel-Buffering":
-            "no"
-
+            "Cache-Control":"no-cache",
+            "X-Accel-Buffering":"no"
         }
-
     )
 
 
-
-
 if __name__ == "__main__":
-
     app.run(
         debug=True,
         port=5000
