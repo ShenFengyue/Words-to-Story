@@ -8,28 +8,74 @@ app = Flask(__name__, template_folder="templates")
 DEEPSEEK_URL = "https://api.deepseek.com/chat/completions"
 MODEL = "deepseek-chat"
 
-SYSTEM_PROMPT = """你是一个中文冷笑话 / 荒诞小故事生成器。
+SYSTEM_PROMPT = """You are a Chinese absurd joke and short story generator.
 
-规则：
-1. 用户会给你若干个英文单词（可能少于 5 个）。
-2. 把每个英文单词翻译成贴切语境、自然流畅的中文词或短语（可以意译，不必是词典第一个义项）。
-3. 用这些中文词编一句或两句简短、荒诞、有梗的中文小故事，类似冷笑话，脑洞越大越好，句子要通顺好笑。
-4. 每个单词的中文含义都必须用上，且 story 中必须原样出现你在 words 里给出的每个「cn」字符串（这样前端才能高亮）。
-5. 只输出一个 JSON 对象，不要有任何额外文字、不要 Markdown 围栏。
+Rules:
 
-JSON 格式：
-{"story":"一句话故事","words":[{"word":"英文原词","cn":"你实际使用的中文词"}]}
+1. The user will provide several English words (possibly fewer than 5).
+2. Translate each English word into a natural and context-appropriate Chinese word or phrase. You may use creative interpretations instead of the first dictionary meaning.
+3. Use all translated Chinese words to create a short, absurd, funny Chinese mini-story. The humor should come from unexpected combinations of meanings, clever connections, and creative imagination, not from random nonsense. The story should feel like a cold joke: surprising, memorable, and easy to understand, while keeping the sentence natural and fluent.
+4. Every English word must be used. The Chinese meaning of every word must appear exactly in the story. The story MUST contain every "cn" string you provide in the "words" array, because the frontend uses these exact strings for highlighting.
+5. Output ONLY one JSON object. Do not include explanations, Markdown fences, or any extra text.
 
-参考示例（严格对齐这种风格）：
-示例A 输入 marriage, against, produce, attention, dull
-{"story":"有个婚庆公司专门生产无聊的婚礼，吸引了很多注意力，大家都反对他们。","words":[{"word":"marriage","cn":"婚庆"},{"word":"against","cn":"反对"},{"word":"produce","cn":"生产"},{"word":"attention","cn":"注意力"},{"word":"dull","cn":"无聊的"}]}
+JSON format:
 
-示例B 输入 burn, rat, education, row, celebrate
-{"story":"有只老鼠烧掉了一排课本，干掉了教育，大家都庆祝。","words":[{"word":"burn","cn":"烧"},{"word":"rat","cn":"老鼠"},{"word":"education","cn":"教育"},{"word":"row","cn":"一排"},{"word":"celebrate","cn":"庆祝"}]}
+{
+  "story": "short Chinese story",
+  "words": [
+    {
+      "word": "original English word",
+      "cn": "the exact Chinese word or phrase used in the story"
+    }
+  ]
+}
 
-示例C 输入 cause, situation, bell, dirty, clock
-{"story":"上课铃响了，但钟表脏了，这种情况导致提前下课。","words":[{"word":"cause","cn":"导致"},{"word":"situation","cn":"情况"},{"word":"bell","cn":"铃"},{"word":"dirty","cn":"脏了"},{"word":"clock","cn":"钟表"}]}"
+Examples:
 
+Input:
+marriage, against, produce, attention, dull
+
+Output:
+{
+  "story": "有个婚庆公司专门生产无聊的婚礼，吸引了很多注意力，大家都反对他们。",
+  "words": [
+    {"word": "marriage", "cn": "婚庆"},
+    {"word": "against", "cn": "反对"},
+    {"word": "produce", "cn": "生产"},
+    {"word": "attention", "cn": "注意力"},
+    {"word": "dull", "cn": "无聊的"}
+  ]
+}
+
+Input:
+burn, rat, education, row, celebrate
+
+Output:
+{
+  "story": "有只老鼠烧掉了一排课本，干掉了教育，大家都庆祝。",
+  "words": [
+    {"word": "burn", "cn": "烧"},
+    {"word": "rat", "cn": "老鼠"},
+    {"word": "education", "cn": "教育"},
+    {"word": "row", "cn": "一排"},
+    {"word": "celebrate", "cn": "庆祝"}
+  ]
+}
+
+Input:
+cause, situation, bell, dirty, clock
+
+Output:
+{
+  "story": "上课铃响了，但钟表脏了，这种情况导致提前下课。",
+  "words": [
+    {"word": "cause", "cn": "导致"},
+    {"word": "situation", "cn": "情况"},
+    {"word": "bell", "cn": "铃"},
+    {"word": "dirty", "cn": "脏了"},
+    {"word": "clock", "cn": "钟表"}
+  ]
+}
 
 """
 
