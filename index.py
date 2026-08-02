@@ -265,7 +265,7 @@ def generate():
     words = _parse_words(data.get("words", []))
 
     # 小彩蛋：输入 547CeciliaW 触发专属祝福（无需 API Key）
-    if words == ["547ceciliaw"]:
+    if words == ["吴诗琦"]:
         return Response(_easter_egg_stream(), mimetype="application/x-ndjson")
 
     # 小彩蛋：输入 申哲 触发专属问候（无需 API Key）
