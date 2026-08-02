@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>单词故事生成器 · Word Story</title>
-  <meta name="description" content="输入英文单词，AI 生成一句荒诞中文小故事，每个词的中文含义都藏在故事里。" />
+  <meta name="description" content="Made by Grayson Shen" />
   <style>
     :root {
       --bg: #0f1020;
@@ -124,11 +124,11 @@
   <div class="app">
     <header class="hero">
       <h1>📖 单词故事生成器</h1>
-      <p class="sub">输入英文单词，AI 帮你编一句荒诞中文小故事，<br />每个词的中文意思都藏在故事里，还会高亮出来。</p>
+      <p class="sub">Made by Grayson Shen</p>
     </header>
 
     <main class="card">
-      <label class="field-label" for="words">英文单词（用逗号、空格或换行分隔，可输入 1 个或多个）</label>
+      <label class="field-label" for="words">用逗号、空格或换行分隔单词</label>
       <textarea id="words" rows="3" placeholder="例如：marriage, against, produce, attention, dull"></textarea>
 
       <div class="styles">
@@ -150,14 +150,14 @@
 
     <section class="result card hidden" id="result">
       <div class="result-head">
-        <span class="badge">AI 生成 · DeepSeek</span>
+        <span class="badge">AI 生成</span>
         <button id="copyBtn" class="btn small" type="button">复制</button>
       </div>
       <p class="story" id="story"></p>
       <div class="wordlist" id="wordlist"></div>
     </section>
 
-    <footer class="foot">故事由 AI 生成，仅供娱乐 · Powered by DeepSeek</footer>
+    <footer class="foot">Grayson Shen 20260802</footer>
   </div>
 
   <script>
