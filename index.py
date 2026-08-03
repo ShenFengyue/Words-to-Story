@@ -37,7 +37,7 @@ marriage, against, produce, attention, dull
 
 Output:
 {
-  "story": "有个婚庆公司专门生产无聊的婚礼，吸引了很多注意力，大家都反对他们。",
+  "story": "有个婚庆公司专门生产无聊的婚礼，他们一直这样做，因此吸引了很多人的注意力，但大家都反对这家婚庆公司的做法。",
   "words": [
     {"word": "marriage", "cn": "婚庆"},
     {"word": "against", "cn": "反对"},
@@ -52,7 +52,7 @@ burn, rat, education, row, celebrate
 
 Output:
 {
-  "story": "有只老鼠烧掉了一排课本，干掉了教育，大家都庆祝。",
+  "story": "有一只老鼠不小心烧掉了一排课本，影响到了学生教育，可是班里的所有同学，都站起来庆祝。",
   "words": [
     {"word": "burn", "cn": "烧"},
     {"word": "rat", "cn": "老鼠"},
@@ -67,7 +67,7 @@ cause, situation, bell, dirty, clock
 
 Output:
 {
-  "story": "上课铃响了，但钟表脏了，这种情况导致提前下课。",
+  "story": "上课铃响起的瞬间，教室墙上的钟表不知道被谁弄脏了，出现这种状况，导致老师不得不提前下课。",
   "words": [
     {"word": "cause", "cn": "导致"},
     {"word": "situation", "cn": "情况"},
