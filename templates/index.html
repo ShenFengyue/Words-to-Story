@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Words to Story</title>
+  <meta name="description" content="Made by Grayson Shen" />
+  <style>
+    :root {
+      --bg: #08091a;
+      --card: rgba(255, 255, 255, 0.045);
+      --card-strong: rgba(255, 255, 255, 0.075);
+      --line: rgba(255, 255, 255, 0.10);
+      --line-strong: rgba(255, 255, 255, 0.20);
+      --text: #edeef7;
+      --muted: #9aa0c4;
+      --primary: #8b6cff;
+      --primary2: #ff79c6;
+      --accent: #5ce1e6;
+      --mark: #ffe27a;
+      --marktext: #1a1500;
+      --err: #ff8a8a;
+      --radius: 18px;
+      --shadow: 0 24px 70px -28px rgba(0, 0, 0, 0.75);
+      --grad: linear-gradient(120deg, var(--primary), var(--primary2));
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Microsoft YaHei", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 36px 16px 56px;
+      position: relative;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    body::before {
+      content: '';
+      position: fixed;
+      inset: -25%;
+      z-index: -1;
+      background:
+        radial-gradient(38% 38% at 18% 12%, rgba(139, 108, 255, 0.28), transparent 60%),
+        radial-gradient(34% 34% at 86% 22%, rgba(255, 121, 198, 0.22), transparent 60%),
+        radial-gradient(46% 46% at 62% 92%, rgba(92, 225, 230, 0.14), transparent 62%);
+      filter: blur(24px);
+      will-change: transform;
+      animation: drift 20s ease-in-out infinite alternate;
+    }
+    @keyframes drift {
+      0%   { transform: translate3d(-2%, -1%, 0) scale(1.02); }
+      100% { transform: translate3d(2%, 2%, 0) scale(1.12); }
+    }
+    .app { max-width: 700px; margin: 0 auto; }
+    .app > * { animation: rise 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+    .app > .hero { animation-delay: 0.02s; }
+    .app > .card:nth-of-type(1) { animation-delay: 0.09s; }
+    .app > .result { animation-delay: 0.14s; }
+    .app > .history { animation-delay: 0.18s; }
+    .app > .foot { animation-delay: 0.22s; }
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: none; }
+    }
+
+    .hero { text-align: center; margin: 10px 0 30px; }
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 12px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--muted);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--line);
+      padding: 6px 14px;
+      border-radius: 999px;
+      margin-bottom: 18px;
+    }
+    .kicker .dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--grad);
+      box-shadow: 0 0 10px 1px rgba(139, 108, 255, 0.8);
+    }
+    .hero h1 {
+      font-size: 40px;
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.5px;
+      background: linear-gradient(100deg, #ffffff 0%, var(--primary) 48%, var(--primary2) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      filter: drop-shadow(0 6px 26px rgba(139, 108, 255, 0.35));
+    }
+    .sub {
+      color: var(--muted);
+      margin-top: 12px;
+      font-size: 16px;
+      font-weight: 400;
+      letter-spacing: 0.5px;
+    }
+    .sub strong { font-weight: 700; color: var(--text); }
+
+    .card {
+      position: relative;
+      background: linear-gradient(180deg, var(--card-strong), var(--card));
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 24px;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      box-shadow: var(--shadow);
+      margin-bottom: 18px;
+    }
+    .card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: 1px;
+      background: linear-gradient(140deg, rgba(255, 255, 255, 0.30), rgba(255, 255, 255, 0.02) 42%, transparent 72%);
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+
+    .field-label { display: block; font-size: 14px; color: var(--muted); margin-bottom: 12px; letter-spacing: 0.3px; }
+    textarea {
+      width: 100%;
+      background: rgba(0, 0, 0, 0.28);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      color: var(--text);
+      padding: 15px;
+      font-size: 16px;
+      resize: vertical;
+      outline: none;
+      line-height: 1.6;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      font-family: inherit;
+    }
+    textarea::placeholder { color: rgba(154, 160, 196, 0.6); }
+    textarea:focus {
+      border-color: rgba(139, 108, 255, 0.6);
+      box-shadow: 0 0 0 4px rgba(139, 108, 255, 0.12), 0 0 34px -8px rgba(139, 108, 255, 0.55);
+    }
+
+    .styles { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+    .styles-label { font-size: 14px; color: var(--muted); margin-right: 2px; }
+    .chips { display: flex; flex-wrap: wrap; gap: 9px; }
+    .chip {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--line);
+      color: var(--muted);
+      padding: 8px 16px;
+      border-radius: 999px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      backdrop-filter: blur(4px);
+    }
+    .chip:hover { color: var(--text); border-color: var(--line-strong); transform: translateY(-1px); }
+    .chip.active {
+      background: var(--grad);
+      color: #fff;
+      border-color: transparent;
+      box-shadow: 0 10px 26px -8px rgba(139, 108, 255, 0.65);
+    }
+
+    .actions { display: flex; gap: 12px; margin-top: 22px; }
+    .btn {
+      border: none;
+      border-radius: 13px;
+      padding: 13px 20px;
+      font-size: 15px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.2s;
+      font-family: inherit;
+    }
+    .btn.primary {
+      flex: 1;
+      background: var(--grad);
+      color: #fff;
+      box-shadow: 0 12px 34px -10px rgba(139, 108, 255, 0.65);
+      position: relative;
+      overflow: hidden;
+    }
+    .btn.primary::after {
+      content: '';
+      position: absolute;
+      top: 0; left: -60%;
+      width: 40%; height: 100%;
+      background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+      transform: skewX(-20deg);
+      transition: left 0.6s ease;
+    }
+    .btn.primary:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 18px 44px -12px rgba(255, 121, 198, 0.7);
+    }
+    .btn.primary:hover:not(:disabled)::after { left: 130%; }
+    .btn.primary:disabled { opacity: 0.55; cursor: not-allowed; }
+    .btn.primary.loading { pointer-events: none; }
+    .btn.ghost { background: rgba(255, 255, 255, 0.06); color: var(--text); border: 1px solid var(--line); }
+    .btn.ghost:hover { background: rgba(255, 255, 255, 0.12); border-color: var(--line-strong); transform: translateY(-1px); }
+    .btn.small {
+      padding: 7px 14px;
+      font-size: 13px;
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--text);
+      border: 1px solid var(--line);
+      border-radius: 11px;
+      transition: all 0.18s;
+    }
+    .btn.small:hover { background: rgba(255, 255, 255, 0.13); border-color: var(--line-strong); transform: translateY(-1px); }
+
+    .spinner {
+      width: 14px; height: 14px;
+      border: 2px solid rgba(255, 255, 255, 0.35);
+      border-top-color: #fff;
+      border-radius: 50%;
+      display: inline-block;
+      vertical-align: -2px;
+      margin-right: 8px;
+      animation: spin 0.7s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .hint { color: var(--err); font-size: 13px; margin-top: 12px; min-height: 18px; }
+    .result .result-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+    .badge {
+      font-size: 12px;
+      color: var(--text);
+      background: rgba(139, 108, 255, 0.14);
+      border: 1px solid rgba(139, 108, 255, 0.32);
+      padding: 5px 13px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      letter-spacing: 0.3px;
+    }
+    .story {
+      font-size: 19px;
+      line-height: 2;
+      letter-spacing: 0.3px;
+      color: var(--text);
+      min-height: 1em;
+    }
+    .story mark {
+      background: linear-gradient(180deg, rgba(255, 226, 122, 0), rgba(255, 226, 122, 0.9));
+      color: var(--marktext);
+      padding: 2px 6px;
+      border-radius: 7px;
+      font-weight: 600;
+      box-shadow: 0 0 0 1px rgba(255, 226, 122, 0.4) inset;
+    }
+    .story.typing::after {
+      content: '';
+      display: inline-block;
+      width: 2px; height: 1.05em;
+      background: var(--primary2);
+      margin-left: 2px;
+      vertical-align: -2px;
+      animation: blink 1s steps(2) infinite;
+    }
+    @keyframes blink { 50% { opacity: 0; } }
+    .wordlist {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 20px;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+    }
+    .wl-item {
+      font-size: 13px;
+      color: var(--muted);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--line);
+      padding: 6px 12px;
+      border-radius: 10px;
+    }
+    .wl-item b { color: var(--primary2); font-weight: 700; }
+
+    .hidden { display: none !important; }
+    .foot { text-align: center; color: var(--muted); font-size: 12px; margin-top: 26px; letter-spacing: 0.6px; opacity: 0.85; }
+
+    /* ===== 聊天记录（对话时间线） ===== */
+    .history .result-head { margin-bottom: 16px; }
+    .empty-hint { color: var(--muted); font-size: 14px; text-align: center; padding: 22px 0; opacity: 0.85; }
+
+    .hist-item {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 16px;
+      margin-bottom: 16px;
+      background: rgba(255, 255, 255, 0.03);
+      animation: rise 0.5s ease both;
+      content-visibility: auto;
+      contain-intrinsic-size: auto 300px;
+    }
+    /* 历史面板会随记录变长，去掉昂贵的大面积玻璃模糊，改用实色卡片 */
+    .history.card {
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+      background: linear-gradient(180deg, rgba(22, 24, 50, 0.78), rgba(14, 16, 38, 0.78));
+    }
+    .hist-item:last-child { margin-bottom: 0; }
+    .hist-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+    .hist-time { font-size: 12px; color: var(--muted); letter-spacing: 0.4px; }
+    .hist-style {
+      font-size: 11px;
+      color: var(--primary2);
+      background: rgba(255, 121, 198, 0.12);
+      border: 1px solid rgba(255, 121, 198, 0.28);
+      padding: 3px 11px;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+
+    .chat-row { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 12px; }
+    .chat-row:last-of-type { margin-bottom: 0; }
+    .avatar {
+      flex: 0 0 auto;
+      width: 34px; height: 34px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-size: 14px;
+      font-weight: 700;
+      color: #fff;
+      box-shadow: 0 4px 14px -4px rgba(0, 0, 0, 0.5);
+    }
+    .avatar.u { background: linear-gradient(135deg, #6b7bff, #9b5cff); }
+    .avatar.a { background: linear-gradient(135deg, #ff79c6, #ff9d6c); }
+    .bubble {
+      flex: 1;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 12px 14px;
+    }
+    .chat-row.ai .bubble {
+      background: linear-gradient(180deg, rgba(139, 108, 255, 0.11), rgba(255, 121, 198, 0.05));
+      border-color: rgba(139, 108, 255, 0.18);
+    }
+    .bubble-label {
+      font-size: 10px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 9px;
+    }
+    .hist-words { display: flex; flex-wrap: wrap; gap: 6px; }
+    .hist-word {
+      font-size: 12px;
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid var(--line);
+      padding: 4px 10px;
+      border-radius: 8px;
+      color: var(--text);
+    }
+    .hist-story { font-size: 15px; line-height: 1.9; color: var(--text); }
+    .hist-story mark {
+      background: linear-gradient(180deg, rgba(255, 226, 122, 0), rgba(255, 226, 122, 0.9));
+      color: var(--marktext);
+      padding: 1px 5px;
+      border-radius: 6px;
+      font-weight: 600;
+    }
+    .hist-actions { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
+    .hist-actions .btn { padding: 6px 13px; font-size: 12px; }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header class="hero">
+      <div class="kicker"><span class="dot"></span>AI 故事工坊</div>
+      <h1>📖 把单词变成故事</h1>
+      <p class="sub">Made by <strong>Grayson Shen</strong> in Hangzhou</p>
+    </header>
+
+    <main class="card">
+      <label class="field-label" for="words">用逗号、空格或换行分隔单词</label>
+      <textarea id="words" rows="3" placeholder="点击左下角的示例试一试，或者输入 申哲 试一试"></textarea>
+
+      <div class="styles">
+        <span class="styles-label">风格选择</span>
+        <div class="chips" id="chips">
+          <button class="chip active" data-style="荒诞脑洞" type="button">荒诞脑洞</button>
+          <button class="chip" data-style="温馨治愈" type="button">温馨治愈</button>
+          <button class="chip" data-style="悬疑推理" type="button">悬疑推理</button>
+          <button class="chip" data-style="童话奇遇" type="button">童话奇遇</button>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button id="exampleBtn" class="btn ghost" type="button">示例</button>
+        <button id="genBtn" class="btn primary" type="button">✨ 生成故事</button>
+      </div>
+      <p class="hint" id="hint"></p>
+    </main>
+
+    <section class="result card hidden" id="result">
+      <div class="result-head">
+        <span class="badge">✨ 生成结果</span>
+        <button id="copyBtn" class="btn small" type="button">复制</button>
+      </div>
+      <p class="story" id="story"></p>
+      <div class="wordlist" id="wordlist"></div>
+    </section>
+
+    <section class="history card hidden" id="historyPanel">
+      <div class="result-head">
+        <span class="badge">📜 聊天记录</span>
+        <button id="clearHistBtn" class="btn small" type="button">清空记录</button>
+      </div>
+      <div id="historyList"></div>
+    </section>
+
+    <footer class="foot">连接人群，创造价值</footer>
+  </div>
+
+  <script>
+    const $ = (s) => document.querySelector(s);
+    const wordsEl = $('#words');
+    const genBtn = $('#genBtn');
+    const hint = $('#hint');
+    const resultEl = $('#result');
+    const storyEl = $('#story');
+    const wordlistEl = $('#wordlist');
+    const copyBtn = $('#copyBtn');
+    const exampleBtn = $('#exampleBtn');
+    const chipsEl = $('#chips');
+
+    let style = '荒诞脑洞';
+
+    chipsEl.addEventListener('click', (e) => {
+      const c = e.target.closest('.chip');
+      if (!c) return;
+      [...chipsEl.children].forEach((x) => x.classList.remove('active'));
+      c.classList.add('active');
+      style = c.dataset.style;
+    });
+
+    exampleBtn.addEventListener('click', () => {
+      wordsEl.value = 'marriage, against, produce, attention, dull';
+      hint.textContent = '';
+    });
+
+    function parseWords(raw) {
+      return raw
+        .split(/[\s,，;；\n]+/)
+        .map((w) => w.trim().toLowerCase())
+        .filter(Boolean);
+    }
+
+    genBtn.addEventListener('click', generate);
+
+    async function generate() {
+      const words = parseWords(wordsEl.value);
+      if (words.length === 0) {
+        hint.textContent = '请输入至少一个英文单词。';
+        return;
+      }
+      if (words.length > 20) {
+        hint.textContent = '最多 20 个单词，精简一下～';
+        return;
+      }
+      hint.textContent = '';
+      genBtn.disabled = true;
+      genBtn.classList.add('loading');
+      genBtn.innerHTML = '<span class="spinner"></span>生成中…';
+      storyEl.textContent = '';
+      storyEl.classList.add('typing');
+      wordlistEl.innerHTML = '';
+      resultEl.classList.remove('hidden');
+      try {
+        const res = await fetch('/api/generate', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ words, style }),
+        });
+        if (!res.ok) {
+          let msg = `请求失败（${res.status}）`;
+          try {
+            const d = await res.json();
+            if (d && d.error) msg = d.error;
+          } catch (e) {}
+          throw new Error(msg);
+        }
+
+        const reader = res.body.getReader();
+        const decoder = new TextDecoder();
+        let buf = '';
+        let meta = null;
+        let streamedStory = '';
+        while (true) {
+          const { value, done } = await reader.read();
+          if (done) break;
+          buf += decoder.decode(value, { stream: true });
+          let nl;
+          while ((nl = buf.indexOf('\n')) !== -1) {
+            const line = buf.slice(0, nl);
+            buf = buf.slice(nl + 1);
+            if (!line.trim()) continue;
+            let obj;
+            try { obj = JSON.parse(line); } catch (e) { continue; }
+            if (obj.type === 'chunk') {
+              streamedStory += obj.text;
+              storyEl.textContent = streamedStory;
+            } else if (obj.type === 'meta') {
+              meta = obj;
+            } else if (obj.type === 'error') {
+              throw new Error(obj.error || '生成失败');
+            }
+          }
+        }
+
+        const story = (meta && meta.story) ? meta.story : streamedStory;
+        const wordList = (meta && meta.words) || [];
+        storyEl.classList.remove('typing');
+        render(story, wordList);
+
+        // 保存到历史记录
+        const _now = new Date();
+        const _pad = (n) => String(n).padStart(2, '0');
+        addHistory({
+          time: `${_now.getFullYear()}-${_pad(_now.getMonth() + 1)}-${_pad(_now.getDate())} ${_pad(_now.getHours())}:${_pad(_now.getMinutes())}`,
+          words: words,
+          wordList: wordList,
+          story: story,
+          style: style,
+        });
+      } catch (err) {
+        storyEl.classList.remove('typing');
+        hint.textContent = '出错了：' + err.message;
+      } finally {
+        genBtn.disabled = false;
+        genBtn.classList.remove('loading');
+        genBtn.textContent = '✨ 生成故事';
+      }
+    }
+
+    function render(story, words) {
+      const cns = (words || []).map((w) => w.cn).filter(Boolean);
+      storyEl.innerHTML = highlight(story, cns);
+      wordlistEl.innerHTML = (words || [])
+        .map((w) => `<span class="wl-item"><b>${esc(w.word)}</b> → ${esc(w.cn)}</span>`)
+        .join('');
+      resultEl.classList.remove('hidden');
+    }
+
+    copyBtn.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(storyEl.textContent);
+        copyBtn.textContent = '已复制';
+        setTimeout(() => (copyBtn.textContent = '复制'), 1500);
+      } catch {
+        hint.textContent = '复制失败，请手动选择文本复制。';
+      }
+    });
+
+    function esc(s) {
+      return String(s).replace(/[&<>"']/g, (m) => ({
+        '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
+      }[m]));
+    }
+
+    // 高亮：把中文词在故事中原样 <mark> 包裹，处理重叠（优先长词）
+    function highlight(text, cns) {
+      const list = [...new Set(cns)].filter(Boolean).sort((a, b) => b.length - a.length);
+      const matches = [];
+      list.forEach((cn) => {
+        let i = text.indexOf(cn);
+        while (i !== -1) {
+          matches.push([i, i + cn.length]);
+          i = text.indexOf(cn, i + cn.length);
+        }
+      });
+      matches.sort((a, b) => a[0] - b[0] || (b[1] - b[0]) - (a[1] - b[0]));
+      let out = '';
+      let last = 0;
+      for (const [s, e] of matches) {
+        if (s < last) continue;
+        out += esc(text.slice(last, s)) + '<mark>' + esc(text.slice(s, e)) + '</mark>';
+        last = e;
+      }
+      out += esc(text.slice(last));
+      return out;
+    }
+
+    // ===== 历史记录（localStorage 持久化）=====
+    const HIST_KEY = 'wts_history';
+    const HIST_MAX = 50;
+    const historyPanel = $('#historyPanel');
+    const historyList = $('#historyList');
+    const clearHistBtn = $('#clearHistBtn');
+
+    function genId() {
+      return Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
+    }
+    function getHistory() {
+      let arr;
+      try { arr = JSON.parse(localStorage.getItem(HIST_KEY) || '[]'); }
+      catch (e) { return []; }
+      if (!Array.isArray(arr)) return [];
+      // 兼容旧数据：确保每条都有稳定 id，不再依赖易变的数组下标
+      let dirty = false;
+      arr.forEach((h) => { if (h && h.id == null) { h.id = genId(); dirty = true; } });
+      if (dirty) setHistory(arr);
+      return arr;
+    }
+    function setHistory(arr) {
+      try { localStorage.setItem(HIST_KEY, JSON.stringify(arr)); }
+      catch (e) { /* 容量满或隐私模式，静默忽略 */ }
+    }
+    function itemInner(h) {
+      return `
+        <div class="hist-top">
+          <span class="hist-time">${esc(h.time)}</span>
+          <span class="hist-style">${esc(h.style || '荒诞脑洞')}</span>
+        </div>
+        <div class="chat-row user">
+          <div class="avatar u">你</div>
+          <div class="bubble">
+            <div class="bubble-label">输入单词</div>
+            <div class="hist-words">
+              ${(h.words || []).map((w) => `<span class="hist-word">${esc(w)}</span>`).join('') || '<span class="hist-word">—</span>'}
+            </div>
+          </div>
+        </div>
+        <div class="chat-row ai">
+          <div class="avatar a">✨</div>
+          <div class="bubble">
+            <div class="bubble-label">生成故事</div>
+            <div class="hist-story">${highlight(h.story || '', (h.wordList || []).map((w) => w.cn))}</div>
+          </div>
+        </div>
+        <div class="hist-actions">
+          <button class="btn small hist-load" type="button">载入单词</button>
+          <button class="btn small hist-copy" type="button">复制故事</button>
+          <button class="btn small hist-del" type="button">删除</button>
+        </div>`;
+    }
+    function makeItemNode(h) {
+      const node = document.createElement('div');
+      node.className = 'hist-item';
+      node.dataset.id = h.id;
+      node.innerHTML = itemInner(h);
+      return node;
+    }
+    // 仅在页面加载时调用一次：完整渲染（带错峰入场动画）
+    function renderHistory() {
+      const arr = getHistory();
+      historyList.innerHTML = '';
+      if (arr.length === 0) {
+        historyPanel.classList.add('hidden');
+        historyList.innerHTML = '<div class="empty-hint">还没有记录，去生成你的第一个故事吧 ✨</div>';
+        return;
+      }
+      historyPanel.classList.remove('hidden');
+      const frag = document.createDocumentFragment();
+      arr.forEach((h, idx) => {
+        const node = makeItemNode(h);
+        node.style.animationDelay = (idx * 0.03) + 's';
+        frag.appendChild(node);
+      });
+      historyList.appendChild(frag);
+    }
+    // 增量新增：只插入一个新节点，不再重建整个列表（性能关键）
+    function addHistory(entry) {
+      let arr = getHistory();
+      entry.id = genId();
+      arr.unshift(entry);
+      if (arr.length > HIST_MAX) arr = arr.slice(0, HIST_MAX);
+      setHistory(arr);
+
+      const empty = historyList.querySelector('.empty-hint');
+      if (empty) empty.remove();
+      historyPanel.classList.remove('hidden');
+
+      const node = makeItemNode(entry);
+      historyList.insertBefore(node, historyList.firstChild);
+      node.style.animation = 'rise 0.5s ease both';
+
+      // 超出上限时移除最旧的一个 DOM 节点
+      const items = historyList.querySelectorAll('.hist-item');
+      if (items.length > HIST_MAX) {
+        items[items.length - 1].remove();
+      }
+    }
+    function showEmptyState() {
+      historyList.innerHTML = '<div class="empty-hint">还没有记录，去生成你的第一个故事吧 ✨</div>';
+      historyPanel.classList.add('hidden');
+    }
+
+    // 事件委托：处理历史项内的按钮点击
+    historyList.addEventListener('click', (e) => {
+      const item = e.target.closest('.hist-item');
+      if (!item) return;
+      const id = item.dataset.id;
+      const arr = getHistory();
+      const h = arr.find((x) => String(x.id) === id);
+      if (!h) return;
+      if (e.target.classList.contains('hist-load')) {
+        wordsEl.value = (h.words || []).join(', ');
+        wordsEl.focus();
+        hint.textContent = '已载入历史单词，可直接重新生成。';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else if (e.target.classList.contains('hist-copy')) {
+        navigator.clipboard.writeText(h.story || '').then(() => {
+          e.target.textContent = '已复制';
+          setTimeout(() => (e.target.textContent = '复制故事'), 1500);
+        }).catch(() => { hint.textContent = '复制失败，请手动选择文本。'; });
+      } else if (e.target.classList.contains('hist-del')) {
+        const i = arr.findIndex((x) => String(x.id) === id);
+        if (i !== -1) arr.splice(i, 1);
+        setHistory(arr);
+        item.remove();
+        if (arr.length === 0) showEmptyState();
+      }
+    });
+
+    clearHistBtn.addEventListener('click', () => {
+      if (!confirm('确定清空全部聊天记录吗？此操作不可撤销。')) return;
+      setHistory([]);
+      renderHistory();
+    });
+
+    // 页面加载时渲染已有历史
+    renderHistory();
+  </script>
+</body>
+</html>
