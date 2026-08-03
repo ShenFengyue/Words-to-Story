@@ -233,7 +233,7 @@ def _event_stream(api_key, user_prompt):
 
 def _easter_egg_stream():
     """小彩蛋：输入 吴诗琦 时返回专属祝福，无需 API Key。"""
-    msg = "祝吴诗琦、547、Ceciliaw天天开心!"
+    msg = "（原内容已过期）"
     yield json.dumps({"type": "chunk", "text": msg}, ensure_ascii=False) + "\n"
     yield json.dumps({"type": "meta", "story": msg, "words": []}, ensure_ascii=False) + "\n"
     yield json.dumps({"type": "done"}, ensure_ascii=False) + "\n"
