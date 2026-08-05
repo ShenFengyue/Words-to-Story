@@ -35,7 +35,7 @@
   },
   {
     "id": "msgkq0k1i11ex",
-    "ts": "2026-08-06 05:03:00",
+    "ts": "2026-08-06 05:03:16",
     "words": [
       {
         "word": "orchard",
@@ -60,8 +60,8 @@
     ],
     "style": "荒诞脑洞",
     "story": "秋天，果园里长出了一个螺旋形的苹果，它总在深夜对风低语：\"我是一则寓言。\"，于是所有的树都开始结螺旋果。",
-    "rating": null,
-    "feature": "",
+    "rating": "good",
+    "feature": "荒诞设喻，物语自生，寓言成真。",
     "uid": "wts_msgbvc683crui3",
     "name": "申哲的手机",
     "source": "example",
