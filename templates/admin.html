@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>管理 · Words to Story</title>
+  <style>
+    :root {
+      --bg: #08091a;
+      --card: rgba(255,255,255,0.05);
+      --line: rgba(255,255,255,0.12);
+      --text: #edeef7;
+      --muted: #9aa0c4;
+      --primary: #8b6cff;
+      --primary2: #ff79c6;
+      --accent: #5ce1e6;
+      --err: #ff8a8a;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      background: var(--bg); color: var(--text);
+      min-height: 100vh; padding: 32px 16px 56px;
+    }
+    .app { max-width: 860px; margin: 0 auto; }
+    h1 { font-size: 26px; font-weight: 800; margin-bottom: 6px; }
+    .sub { color: var(--muted); font-size: 14px; margin-bottom: 20px; }
+    .sub a { color: var(--accent); }
+    .bar { display: flex; gap: 12px; align-items: center; margin-bottom: 18px; flex-wrap: wrap; }
+    .btn {
+      border: none; border-radius: 11px; padding: 10px 16px; font-size: 14px;
+      cursor: pointer; font-weight: 600; font-family: inherit;
+    }
+    .btn.primary { background: linear-gradient(120deg, var(--primary), var(--primary2)); color: #fff; }
+    .btn.danger { background: rgba(255,138,138,0.16); color: var(--err); border: 1px solid rgba(255,138,138,0.4); }
+    .btn.small { padding: 6px 12px; font-size: 12px; background: rgba(255,255,255,0.07); color: var(--text); border: 1px solid var(--line); }
+    .hint { color: var(--err); font-size: 13px; min-height: 18px; }
+    .count { color: var(--muted); font-size: 13px; }
+    .item {
+      border: 1px solid var(--line); border-radius: 14px; padding: 16px;
+      margin-bottom: 14px; background: rgba(255,255,255,0.03);
+    }
+    .item-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; gap: 10px; flex-wrap: wrap; }
+    .meta { font-size: 12px; color: var(--muted); display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+    .badge { font-size: 11px; padding: 3px 10px; border-radius: 999px; }
+    .badge.good { color: var(--accent); background: rgba(92,225,230,0.14); border: 1px solid rgba(92,225,230,0.34); }
+    .badge.bad { color: var(--err); background: rgba(255,138,138,0.14); border: 1px solid rgba(255,138,138,0.34); }
+    .words { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+    .w { font-size: 12px; background: rgba(255,255,255,0.07); border: 1px solid var(--line); padding: 3px 9px; border-radius: 8px; }
+    .story { font-size: 15px; line-height: 1.8; }
+    .feature { font-size: 13px; color: var(--accent); margin-top: 8px; padding-top: 8px; border-top: 1px dashed var(--line); }
+    .empty { color: var(--muted); text-align: center; padding: 40px 0; }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <h1>🛠 记忆管理</h1>
+    <p class="sub">这里管理所有生成结果与评价。返回 <a href="/">主页</a>。</p>
+    <div class="bar">
+      <span class="count" id="count">读取中…</span>
+      <button id="clearBtn" class="btn danger" type="button">清空全部</button>
+      <button id="refreshBtn" class="btn primary" type="button">刷新</button>
+    </div>
+    <p class="hint" id="hint"></p>
+    <div id="list"></div>
+  </div>
+
+  <script>
+    const $ = (s) => document.querySelector(s);
+    const listEl = $('#list');
+    const countEl = $('#count');
+    const hint = $('#hint');
+
+    // 从 URL 读取 ?key= 并附加到所有管理接口
+    const KEY = new URLSearchParams(location.search).get('key') || '';
+    const withKey = (url) => KEY ? (url + (url.includes('?') ? '&' : '?') + 'key=' + encodeURIComponent(KEY)) : url;
+
+    function esc(s) {
+      return String(s == null ? '' : s).replace(/[&<>"']/g, (m) => ({
+        '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
+      }[m]));
+    }
+
+    async function load() {
+      hint.textContent = '';
+      try {
+        const res = await fetch(withKey('/api/admin/list'));
+        if (!res.ok) {
+          const d = await res.json().catch(() => ({}));
+          throw new Error(d.error || ('HTTP ' + res.status));
+        }
+        const d = await res.json();
+        const arr = (d.records || []).slice().reverse(); // 最新在前
+        countEl.textContent = '共 ' + arr.length + ' 条';
+        if (arr.length === 0) {
+          listEl.innerHTML = '<div class="empty">还没有记录。</div>';
+          return;
+        }
+        listEl.innerHTML = arr.map((r) => `
+          <div class="item" data-id="${esc(r.id)}">
+            <div class="item-top">
+              <div class="meta">
+                <span>${esc(r.ts)}</span>
+                <span class="badge ${r.rating === 'good' ? 'good' : 'bad'}">${r.rating === 'good' ? '夯 👍' : '拉 👎'}</span>
+                <span>${esc(r.style || '荒诞脑洞')}</span>
+              </div>
+              <button class="btn small del" type="button">删除</button>
+            </div>
+            <div class="words">${(r.words || []).map((w) => `<span class="w">${esc(w.word)}→${esc(w.cn)}</span>`).join('') || '<span class="w">—</span>'}</div>
+            <div class="story">${esc(r.story)}</div>
+            ${r.feature ? `<div class="feature">好在哪里：${esc(r.feature)}</div>` : ''}
+          </div>
+        `).join('');
+      } catch (e) {
+        hint.textContent = '读取失败：' + e.message;
+        countEl.textContent = '';
+      }
+    }
+
+    listEl.addEventListener('click', async (e) => {
+      const btn = e.target.closest('.del');
+      if (!btn) return;
+      const item = btn.closest('.item');
+      const id = item.dataset.id;
+      if (!confirm('确定删除这条记录吗？')) return;
+      try {
+        const res = await fetch(withKey('/api/admin/delete'), {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ id }),
+        });
+        const d = await res.json().catch(() => ({}));
+        if (d.ok) { load(); } else { hint.textContent = '删除失败：' + (d.error || '未知'); }
+      } catch (err) {
+        hint.textContent = '删除失败：' + err.message;
+      }
+    });
+
+    $('#clearBtn').addEventListener('click', async () => {
+      if (!confirm('确定清空全部记录吗？此操作不可撤销。')) return;
+      try {
+        const res = await fetch(withKey('/api/admin/clear'), { method: 'POST' });
+        const d = await res.json().catch(() => ({}));
+        if (d.ok) { load(); } else { hint.textContent = '清空失败：' + (d.error || '未知'); }
+      } catch (err) {
+        hint.textContent = '清空失败：' + err.message;
+      }
+    });
+
+    $('#refreshBtn').addEventListener('click', load);
+
+    load();
+  </script>
+</body>
+</html>
