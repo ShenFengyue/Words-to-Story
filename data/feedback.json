@@ -1,1 +1,36 @@
-[]
+[
+  {
+    "id": "msgd0tolsqdn8",
+    "ts": "2026-08-06 01:27:28",
+    "words": [
+      {
+        "word": "crimson",
+        "cn": "绯红"
+      },
+      {
+        "word": "phantom",
+        "cn": "幻影"
+      },
+      {
+        "word": "fortune",
+        "cn": "财产"
+      },
+      {
+        "word": "spiral",
+        "cn": "螺旋状"
+      },
+      {
+        "word": "fossil",
+        "cn": "化石"
+      }
+    ],
+    "style": "荒诞脑洞",
+    "story": "一个穿着绯红外套的幻影在化石展览馆里转圈，突然发现自己的钱包被卷入了螺旋状的漩涡，里面装着他所有的财产。他只好顺着漩涡跳进去，结果发现那是通往过去的时间隧道。",
+    "rating": null,
+    "feature": "",
+    "uid": "wts_msgbvc683crui3",
+    "name": "申哲的手机",
+    "source": "example",
+    "seq": 1
+  }
+]
