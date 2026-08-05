@@ -32,5 +32,39 @@
     "name": "申哲的笔记本电脑",
     "source": "example",
     "seq": 1
+  },
+  {
+    "id": "msgcufv3a6s1p",
+    "ts": "2026-08-06 01:22:30",
+    "words": [
+      {
+        "word": "sickle",
+        "cn": "镰刀"
+      },
+      {
+        "word": "ocean",
+        "cn": "海洋"
+      },
+      {
+        "word": "silver",
+        "cn": "银色的"
+      },
+      {
+        "word": "feather",
+        "cn": "羽毛般的"
+      },
+      {
+        "word": "petal",
+        "cn": "花瓣"
+      }
+    ],
+    "style": "荒诞脑洞",
+    "story": "一只患了海洋恐惧症的镰刀，在银色的月光下用羽毛般的花瓣写了一封分手信，然后跳进了海里。",
+    "rating": null,
+    "feature": "",
+    "uid": "wts_msgbvc683crui3",
+    "name": "申哲的手机",
+    "source": "example",
+    "seq": 2
   }
 ]
