@@ -1,1 +1,36 @@
-[]
+[
+  {
+    "id": "msgcov537g6g0",
+    "ts": "2026-08-06 01:18:09",
+    "words": [
+      {
+        "word": "storm",
+        "cn": "风暴"
+      },
+      {
+        "word": "mirror",
+        "cn": "镜子"
+      },
+      {
+        "word": "anchor",
+        "cn": "抛锚"
+      },
+      {
+        "word": "spiral",
+        "cn": "螺旋"
+      },
+      {
+        "word": "silver",
+        "cn": "银色"
+      }
+    ],
+    "style": "荒诞脑洞",
+    "story": "风暴中，有人对着镜子抛锚，螺旋上升的水柱把银色的月亮卷成了碎片。",
+    "rating": null,
+    "feature": "",
+    "uid": "wts_msgbckytj6k02r",
+    "name": "申哲的笔记本电脑",
+    "source": "example",
+    "seq": 1
+  }
+]
