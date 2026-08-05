@@ -69,7 +69,7 @@
   },
   {
     "id": "msgkqnxuhrq5z",
-    "ts": "2026-08-06 05:03:31",
+    "ts": "2026-08-06 05:04:04",
     "words": [
       {
         "word": "prison",
@@ -94,7 +94,7 @@
     ],
     "style": "荒诞脑洞",
     "story": "一个囚犯在监狱里用银质小刀在阳台上刻下了一根蜡烛，然后整个监狱都变成了蜡烛，所有人都被烧成了灰烬。",
-    "rating": null,
+    "rating": "bad",
     "feature": "",
     "uid": "wts_msgbvc683crui3",
     "name": "申哲的手机",
