@@ -1,5 +1,9 @@
 # 单词故事生成器 · Word Story
 
+Designed by Grayson Shen in Hangzhou
+
+2026-08-03
+
 输入英文单词（1 个或多个） → 调用 DeepSeek 生成一句荒诞中文小故事，每个单词的中文含义都嵌在故事里并高亮显示。风格示例：
 
 > marriage, against, produce, attention, dull
