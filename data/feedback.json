@@ -134,5 +134,39 @@
     "name": "申哲的手机",
     "source": "",
     "seq": 4
+  },
+  {
+    "id": "msgcvl0pn1uh0",
+    "ts": "2026-08-06 01:23:23",
+    "words": [
+      {
+        "word": "orchard",
+        "cn": "果园"
+      },
+      {
+        "word": "anchor",
+        "cn": "锚"
+      },
+      {
+        "word": "fable",
+        "cn": "寓言故事"
+      },
+      {
+        "word": "lantern",
+        "cn": "灯笼"
+      },
+      {
+        "word": "dagger",
+        "cn": "匕首"
+      }
+    ],
+    "style": "荒诞脑洞",
+    "story": "果园里挂着一盏灯笼，灯笼下面拴着一个锚，锚上刻着寓言故事，故事里的主角是一把匕首。",
+    "rating": null,
+    "feature": "",
+    "uid": "wts_msgbvc683crui3",
+    "name": "申哲的手机",
+    "source": "example",
+    "seq": 5
   }
 ]
