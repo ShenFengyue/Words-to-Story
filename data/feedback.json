@@ -100,5 +100,39 @@
     "name": "申哲的手机",
     "source": "example",
     "seq": 3
+  },
+  {
+    "id": "msgkro4m66og7",
+    "ts": "2026-08-06 05:04:17",
+    "words": [
+      {
+        "word": "autumn",
+        "cn": "秋天"
+      },
+      {
+        "word": "anchor",
+        "cn": "船锚"
+      },
+      {
+        "word": "fortune",
+        "cn": "财富"
+      },
+      {
+        "word": "silence",
+        "cn": "沉默"
+      },
+      {
+        "word": "velvet",
+        "cn": "天鹅绒"
+      }
+    ],
+    "style": "荒诞脑洞",
+    "story": "秋天到了，一个诗人试图用天鹅绒一样的沉默朗诵，却意外用船锚砸中了一个预言家，预言家说这是天赐的财富。",
+    "rating": null,
+    "feature": "",
+    "uid": "wts_msgbvc683crui3",
+    "name": "申哲的手机",
+    "source": "example",
+    "seq": 4
   }
 ]
