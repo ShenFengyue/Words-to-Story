@@ -66,5 +66,39 @@
     "name": "申哲的手机",
     "source": "example",
     "seq": 2
+  },
+  {
+    "id": "msgcv4lhu2xmr",
+    "ts": "2026-08-06 01:23:02",
+    "words": [
+      {
+        "word": "marble",
+        "cn": "大理石"
+      },
+      {
+        "word": "feather",
+        "cn": "羽毛"
+      },
+      {
+        "word": "moon",
+        "cn": "月球"
+      },
+      {
+        "word": "timber",
+        "cn": "木材"
+      },
+      {
+        "word": "hollow",
+        "cn": "空心"
+      }
+    ],
+    "style": "荒诞脑洞",
+    "story": "一块大理石和一根羽毛在月球上比赛跑步，跑道是用空心木材铺的，结果大理石掉进了树洞里，羽毛却飞了过去。",
+    "rating": null,
+    "feature": "",
+    "uid": "wts_msgbvc683crui3",
+    "name": "申哲的手机",
+    "source": "example",
+    "seq": 3
   }
 ]
