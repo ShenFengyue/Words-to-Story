@@ -100,5 +100,39 @@
     "name": "申哲的手机",
     "source": "example",
     "seq": 3
+  },
+  {
+    "id": "msgcvel4h5pgp",
+    "ts": "2026-08-06 01:23:15",
+    "words": [
+      {
+        "word": "marble",
+        "cn": "大理石"
+      },
+      {
+        "word": "feather",
+        "cn": "羽毛"
+      },
+      {
+        "word": "moon",
+        "cn": "月亮"
+      },
+      {
+        "word": "timber",
+        "cn": "木材"
+      },
+      {
+        "word": "hollow",
+        "cn": "空心"
+      }
+    ],
+    "style": "荒诞脑洞",
+    "story": "一颗大理石做的羽毛在月亮的肚子里游泳，那里的木材都是空心的，所以没有人发现异常。",
+    "rating": null,
+    "feature": "",
+    "uid": "wts_msgbvc683crui3",
+    "name": "申哲的手机",
+    "source": "",
+    "seq": 4
   }
 ]
