@@ -2387,5 +2387,39 @@
     "name": "申哲的手机",
     "source": "example",
     "seq": 73
+  },
+  {
+    "id": "mshopkrymym3t",
+    "ts": "2026-08-06 23:42:25",
+    "words": [
+      {
+        "word": "comet",
+        "cn": "彗星"
+      },
+      {
+        "word": "fortune",
+        "cn": "财富"
+      },
+      {
+        "word": "asylum",
+        "cn": "疯人院"
+      },
+      {
+        "word": "orchard",
+        "cn": "果园"
+      },
+      {
+        "word": "thistle",
+        "cn": "蓟草"
+      }
+    ],
+    "style": "荒诞脑洞",
+    "story": "一颗彗星撞进了疯人院的果园，苹果树下的疯子们以为这是天降财富，纷纷去摘那颗带刺的星星，结果被蓟草扎得满手是血，却笑着说这是命运的馈赠。",
+    "rating": null,
+    "feature": "",
+    "uid": "wts_msgbvc683crui3",
+    "name": "申哲的手机",
+    "source": "",
+    "seq": 74
   }
 ]
