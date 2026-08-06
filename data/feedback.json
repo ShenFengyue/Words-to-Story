@@ -961,5 +961,39 @@
     "name": "申哲的笔记本电脑",
     "source": "",
     "seq": 30
+  },
+  {
+    "id": "msgt73agm6bec",
+    "ts": "2026-08-06 09:00:12",
+    "words": [
+      {
+        "word": "piece",
+        "cn": "拼图"
+      },
+      {
+        "word": "prisoner",
+        "cn": "囚犯"
+      },
+      {
+        "word": "member",
+        "cn": "成员"
+      },
+      {
+        "word": "station",
+        "cn": "车站"
+      },
+      {
+        "word": "lay",
+        "cn": "躺"
+      }
+    ],
+    "style": "荒诞脑洞",
+    "story": "一块拼图梦想成为囚犯，它偷偷钻进监狱，成了编号9527的成员。可它躺在一排床位上，却发现自己待在车站的候车室里，原来监狱早已搬走，只剩下一块孤独的拼图。",
+    "rating": null,
+    "feature": "",
+    "uid": "wts_msgbckytj6k02r",
+    "name": "申哲的笔记本电脑",
+    "source": "",
+    "seq": 31
   }
 ]
