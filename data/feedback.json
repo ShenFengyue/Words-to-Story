@@ -2149,5 +2149,39 @@
     "name": "申哲的手机",
     "source": "example",
     "seq": 66
+  },
+  {
+    "id": "msgzkp1nblwvs",
+    "ts": "2026-08-06 11:58:46",
+    "words": [
+      {
+        "word": "dagger",
+        "cn": "匕首"
+      },
+      {
+        "word": "riddle",
+        "cn": "谜语"
+      },
+      {
+        "word": "thistle",
+        "cn": "蓟花"
+      },
+      {
+        "word": "voyage",
+        "cn": "航海之旅"
+      },
+      {
+        "word": "echo",
+        "cn": "回声"
+      }
+    ],
+    "style": "荒诞脑洞",
+    "story": "伯爵掏出匕首，问了一个谜语：蓟花如何度过航海之旅？回声里没有答案，只有匕首的沉默。",
+    "rating": null,
+    "feature": "",
+    "uid": "wts_msgbvc683crui3",
+    "name": "申哲的手机",
+    "source": "example",
+    "seq": 67
   }
 ]
