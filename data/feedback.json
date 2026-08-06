@@ -2319,5 +2319,39 @@
     "name": "申哲的手机",
     "source": "example",
     "seq": 71
+  },
+  {
+    "id": "mshonbq42npb5",
+    "ts": "2026-08-06 23:40:38",
+    "words": [
+      {
+        "word": "frost",
+        "cn": "霜"
+      },
+      {
+        "word": "feather",
+        "cn": "羽毛"
+      },
+      {
+        "word": "moon",
+        "cn": "月亮"
+      },
+      {
+        "word": "voyage",
+        "cn": "航行"
+      },
+      {
+        "word": "whisper",
+        "cn": "whisper"
+      }
+    ],
+    "style": "荒诞脑洞",
+    "story": "霜降之夜，一片羽毛偷走了月亮的 voyage，那是一次无声的航行。它对着月亮 whisper 了一个秘密：霜冻正在融化，而海洋学会了飞翔。",
+    "rating": null,
+    "feature": "",
+    "uid": "wts_msgbckytj6k02r",
+    "name": "申哲的笔记本电脑",
+    "source": "",
+    "seq": 72
   }
 ]
