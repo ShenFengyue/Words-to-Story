@@ -2523,5 +2523,39 @@
     "name": "申哲的手机",
     "source": "",
     "seq": 77
+  },
+  {
+    "id": "mshotcxbfzqfj",
+    "ts": "2026-08-06 23:45:20",
+    "words": [
+      {
+        "word": "whisper",
+        "cn": "低声"
+      },
+      {
+        "word": "mirror",
+        "cn": "镜子"
+      },
+      {
+        "word": "pilgrim",
+        "cn": "朝圣者"
+      },
+      {
+        "word": "ribbon",
+        "cn": "丝带"
+      },
+      {
+        "word": "echo",
+        "cn": "回声"
+      }
+    ],
+    "style": "荒诞脑洞",
+    "story": "一位朝圣者低声对镜子说话，镜子里却传来山谷的回声。他系上丝带，发现那回声其实是自己多年前丢失的旅行者。",
+    "rating": null,
+    "feature": "",
+    "uid": "wts_msgbckytj6k02r",
+    "name": "申哲的笔记本电脑",
+    "source": "example",
+    "seq": 78
   }
 ]
