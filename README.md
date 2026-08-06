@@ -1,4 +1,4 @@
-# Words to Story
+# Words to Story2
 
 > 丢几个英文单词进去，看 AI 把它们编成一段故事。
 
