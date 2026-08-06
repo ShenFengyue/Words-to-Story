@@ -880,5 +880,39 @@
     "name": "申哲的笔记本电脑",
     "source": "",
     "seq": 27
+  },
+  {
+    "id": "msgsyht6z3tbj",
+    "ts": "2026-08-06 08:53:31",
+    "words": [
+      {
+        "word": "neither",
+        "cn": "既不难也"
+      },
+      {
+        "word": "simple",
+        "cn": "简单"
+      },
+      {
+        "word": "test",
+        "cn": "测试"
+      },
+      {
+        "word": "sail",
+        "cn": "帆船"
+      },
+      {
+        "word": "title",
+        "cn": "标题"
+      }
+    ],
+    "style": "荒诞脑洞",
+    "story": "这个测试既不难也简单，但没人能通过。因为题目是：请用帆船把标题从海上带回来。大家都不知所措，直到有人把标题直接念出来，船就沉了。",
+    "rating": null,
+    "feature": "",
+    "uid": "wts_msgbckytj6k02r",
+    "name": "申哲的笔记本电脑",
+    "source": "",
+    "seq": 28
   }
 ]
