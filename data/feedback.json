@@ -927,5 +927,39 @@
     "name": "申哲的笔记本电脑",
     "source": "",
     "seq": 29
+  },
+  {
+    "id": "msgt6tc3grgyr",
+    "ts": "2026-08-06 08:59:59",
+    "words": [
+      {
+        "word": "piece",
+        "cn": "块"
+      },
+      {
+        "word": "prisoner",
+        "cn": "囚犯"
+      },
+      {
+        "word": "member",
+        "cn": "成员"
+      },
+      {
+        "word": "station",
+        "cn": "席"
+      },
+      {
+        "word": "lay",
+        "cn": "平放"
+      }
+    ],
+    "style": "荒诞脑洞",
+    "story": "一块蛋糕被切成六份，可监狱里只有五个囚犯，于是第六份被摆在了成员席上。监狱长下令大家保持队形，把那份蛋糕平放，等它自己烂掉，好让每个人都能看到自己分到的部分被浪费。",
+    "rating": null,
+    "feature": "",
+    "uid": "wts_msgbckytj6k02r",
+    "name": "申哲的笔记本电脑",
+    "source": "",
+    "seq": 30
   }
 ]
