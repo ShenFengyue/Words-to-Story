@@ -2489,5 +2489,39 @@
     "name": "申哲的手机",
     "source": "",
     "seq": 76
+  },
+  {
+    "id": "mshopxi1sdrml",
+    "ts": "2026-08-06 23:42:41",
+    "words": [
+      {
+        "word": "comet",
+        "cn": "彗星"
+      },
+      {
+        "word": "fortune",
+        "cn": "财富"
+      },
+      {
+        "word": "asylum",
+        "cn": "疯人院"
+      },
+      {
+        "word": "orchard",
+        "cn": "果园"
+      },
+      {
+        "word": "thistle",
+        "cn": "蓟草"
+      }
+    ],
+    "style": "荒诞脑洞",
+    "story": "一颗彗星拖着长尾巴划过夜空，恰好被疯人院的院长看见。他坚信这是命运的征兆，于是下令将整个果园改种成蓟草。不久后，疯人院的人们开始相信，他们的财富就是从这些蓟草里长出来的。",
+    "rating": null,
+    "feature": "",
+    "uid": "wts_msgbvc683crui3",
+    "name": "申哲的手机",
+    "source": "",
+    "seq": 77
   }
 ]
