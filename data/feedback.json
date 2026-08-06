@@ -2251,5 +2251,39 @@
     "name": "申哲的笔记本电脑",
     "source": "example",
     "seq": 69
+  },
+  {
+    "id": "mshol6rd8o2x5",
+    "ts": "2026-08-06 23:38:58",
+    "words": [
+      {
+        "word": "frost",
+        "cn": "霜冻"
+      },
+      {
+        "word": "feather",
+        "cn": "羽毛"
+      },
+      {
+        "word": "moon",
+        "cn": "月亮"
+      },
+      {
+        "word": "voyage",
+        "cn": "航行"
+      },
+      {
+        "word": "whisper",
+        "cn": "私语"
+      }
+    ],
+    "style": "荒诞脑洞",
+    "story": "深夜，霜冻覆盖了整座城市，一片羽毛飘落在月亮的影子里，他轻声向月亮私语，请求一场可以航行的旅行。",
+    "rating": null,
+    "feature": "",
+    "uid": "wts_msgbckytj6k02r",
+    "name": "申哲的笔记本电脑",
+    "source": "example",
+    "seq": 70
   }
 ]
