@@ -1311,5 +1311,39 @@
     "name": "申哲的笔记本电脑",
     "source": "example",
     "seq": 41
+  },
+  {
+    "id": "msgwy9cgxdvth",
+    "ts": "2026-08-06 10:45:20",
+    "words": [
+      {
+        "word": "overweight",
+        "cn": "超重的"
+      },
+      {
+        "word": "unite",
+        "cn": "联合"
+      },
+      {
+        "word": "committee",
+        "cn": "委员会"
+      },
+      {
+        "word": "pity",
+        "cn": "同情"
+      },
+      {
+        "word": "admire",
+        "cn": "敬佩"
+      }
+    ],
+    "style": "荒诞脑洞",
+    "story": "镇上有个超重的胖子，他联合其他胖子组成委员会，大家都很同情他，但也敬佩他，因为他的减肥计划就是把自己折叠成一片纸。",
+    "rating": null,
+    "feature": "",
+    "uid": "wts_msgbckytj6k02r",
+    "name": "申哲的笔记本电脑",
+    "source": "",
+    "seq": 42
   }
 ]
