@@ -1447,5 +1447,39 @@
     "name": "申哲的笔记本电脑",
     "source": "",
     "seq": 45
+  },
+  {
+    "id": "msgx7s0m0fzpq",
+    "ts": "2026-08-06 10:52:44",
+    "words": [
+      {
+        "word": "overcoat",
+        "cn": "大衣"
+      },
+      {
+        "word": "cage",
+        "cn": "笼子"
+      },
+      {
+        "word": "forest",
+        "cn": "森林"
+      },
+      {
+        "word": "division",
+        "cn": "分家"
+      },
+      {
+        "word": "anecdote",
+        "cn": "轶事"
+      }
+    ],
+    "style": "荒诞脑洞",
+    "story": "一件大衣披在森林的肩上，树们惊愕地发现，自己成了笼子里的观众，听着一个关于“分家”的笑话，后来才明白，那不过是林间的一则轶事。",
+    "rating": null,
+    "feature": "",
+    "uid": "wts_msgbckytj6k02r",
+    "name": "申哲的笔记本电脑",
+    "source": "",
+    "seq": 46
   }
 ]
