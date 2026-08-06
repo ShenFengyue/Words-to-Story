@@ -1,4 +1,4 @@
-# 单词故事生成器 · Word Story
+# 单词故事生成器 · Word to Story
 
 **Designed by Grayson Shen in Hangzhou 2026-08-03**
 
