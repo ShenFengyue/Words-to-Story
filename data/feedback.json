@@ -846,5 +846,39 @@
     "name": "申哲的笔记本电脑",
     "source": "",
     "seq": 26
+  },
+  {
+    "id": "msgsyafv0g3dt",
+    "ts": "2026-08-06 08:53:21",
+    "words": [
+      {
+        "word": "neither",
+        "cn": "既不"
+      },
+      {
+        "word": "simple",
+        "cn": "简单"
+      },
+      {
+        "word": "test",
+        "cn": "测试"
+      },
+      {
+        "word": "sail",
+        "cn": "帆船"
+      },
+      {
+        "word": "title",
+        "cn": "标题"
+      }
+    ],
+    "style": "荒诞脑洞",
+    "story": "他既不潮也不土，简单得像个帆船上的标题，却在测试里翻了船。",
+    "rating": null,
+    "feature": "",
+    "uid": "wts_msgbckytj6k02r",
+    "name": "申哲的笔记本电脑",
+    "source": "",
+    "seq": 27
   }
 ]
