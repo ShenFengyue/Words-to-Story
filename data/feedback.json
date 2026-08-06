@@ -1481,5 +1481,39 @@
     "name": "申哲的笔记本电脑",
     "source": "",
     "seq": 46
+  },
+  {
+    "id": "msgx7wy1db24v",
+    "ts": "2026-08-06 10:52:51",
+    "words": [
+      {
+        "word": "overcoat",
+        "cn": "大衣"
+      },
+      {
+        "word": "cage",
+        "cn": "笼子"
+      },
+      {
+        "word": "forest",
+        "cn": "森林"
+      },
+      {
+        "word": "division",
+        "cn": "分区"
+      },
+      {
+        "word": "anecdote",
+        "cn": "轶事"
+      }
+    ],
+    "style": "荒诞脑洞",
+    "story": "一件大衣穿上后变成了一片森林，里面住着一只喜欢讲笑话的老虎。它被关进了一个笼子，但这笼子只是森林的一个分区。老笑话讲多了，森林里开始流传关于它的轶事。",
+    "rating": null,
+    "feature": "",
+    "uid": "wts_msgbckytj6k02r",
+    "name": "申哲的笔记本电脑",
+    "source": "",
+    "seq": 47
   }
 ]
