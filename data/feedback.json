@@ -2183,5 +2183,39 @@
     "name": "申哲的手机",
     "source": "example",
     "seq": 67
+  },
+  {
+    "id": "mshnrywipmylq",
+    "ts": "2026-08-06 23:16:15",
+    "words": [
+      {
+        "word": "lantern",
+        "cn": "灯笼"
+      },
+      {
+        "word": "bridge",
+        "cn": "桥"
+      },
+      {
+        "word": "locket",
+        "cn": "挂坠盒"
+      },
+      {
+        "word": "asylum",
+        "cn": "疯人院"
+      },
+      {
+        "word": "silver",
+        "cn": "银色"
+      }
+    ],
+    "style": "荒诞脑洞",
+    "story": "灯笼里的火焰偷走了银桥的倒影，挂在那座通往疯人院的桥下，像一枚闪亮的挂坠盒。病人说，那是银色的钥匙，能打开所有被锁住的梦境。",
+    "rating": null,
+    "feature": "",
+    "uid": "wts_msgbckytj6k02r",
+    "name": "申哲的笔记本电脑",
+    "source": "example",
+    "seq": 68
   }
 ]
