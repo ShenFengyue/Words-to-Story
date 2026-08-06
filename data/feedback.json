@@ -2353,5 +2353,39 @@
     "name": "申哲的笔记本电脑",
     "source": "",
     "seq": 72
+  },
+  {
+    "id": "mshopeflesp60",
+    "ts": "2026-08-06 23:42:16",
+    "words": [
+      {
+        "word": "comet",
+        "cn": "彗星"
+      },
+      {
+        "word": "fortune",
+        "cn": "财富"
+      },
+      {
+        "word": "asylum",
+        "cn": "疯人院"
+      },
+      {
+        "word": "orchard",
+        "cn": "果园"
+      },
+      {
+        "word": "thistle",
+        "cn": "蓟草"
+      }
+    ],
+    "style": "荒诞脑洞",
+    "story": "一颗彗星撞进了疯人院的果园，那里种满了蓟草。病人们相信这是命运的预兆，纷纷开始种植蓟草，期待彗星再次降临，带来更多的财富。",
+    "rating": null,
+    "feature": "",
+    "uid": "wts_msgbvc683crui3",
+    "name": "申哲的手机",
+    "source": "example",
+    "seq": 73
   }
 ]
