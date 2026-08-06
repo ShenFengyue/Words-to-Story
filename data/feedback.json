@@ -2285,5 +2285,39 @@
     "name": "申哲的笔记本电脑",
     "source": "example",
     "seq": 70
+  },
+  {
+    "id": "mshom6ma374y3",
+    "ts": "2026-08-06 23:39:46",
+    "words": [
+      {
+        "word": "storm",
+        "cn": "风暴"
+      },
+      {
+        "word": "comet",
+        "cn": "彗星"
+      },
+      {
+        "word": "winter",
+        "cn": "冬天"
+      },
+      {
+        "word": "ocean",
+        "cn": "海洋"
+      },
+      {
+        "word": "embers",
+        "cn": "余烬"
+      }
+    ],
+    "style": "荒诞脑洞",
+    "story": "一场风暴席卷了城市，彗星恰好掠过天空，人们误以为冬天提前降临，海洋却依然温暖如夏。夜晚，岸边燃起篝火，寒风中的余烬飘向水面，像是不肯熄灭的梦。",
+    "rating": null,
+    "feature": "",
+    "uid": "wts_msgbvc683crui3",
+    "name": "申哲的手机",
+    "source": "example",
+    "seq": 71
   }
 ]
