@@ -1617,5 +1617,39 @@
     "name": "申哲的笔记本电脑",
     "source": "",
     "seq": 50
+  },
+  {
+    "id": "msgy24081roly",
+    "ts": "2026-08-06 11:16:19",
+    "words": [
+      {
+        "word": "trust",
+        "cn": "信任"
+      },
+      {
+        "word": "commercial",
+        "cn": "商业"
+      },
+      {
+        "word": "constitution",
+        "cn": "宪法"
+      },
+      {
+        "word": "behalf",
+        "cn": "代表"
+      },
+      {
+        "word": "victory",
+        "cn": "胜利"
+      }
+    ],
+    "style": "荒诞脑洞",
+    "story": "他信任了那家商业公司的广告，以为宪法会代表他打官司，但结果却是一场胜利，只是胜利的是那家公司。",
+    "rating": null,
+    "feature": "",
+    "uid": "wts_msgbckytj6k02r",
+    "name": "申哲的笔记本电脑",
+    "source": "",
+    "seq": 51
   }
 ]
