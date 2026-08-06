@@ -710,5 +710,39 @@
     "name": "申哲的笔记本电脑",
     "source": "",
     "seq": 22
+  },
+  {
+    "id": "msgssipl6c5bv",
+    "ts": "2026-08-06 08:48:52",
+    "words": [
+      {
+        "word": "mail",
+        "cn": "邮递员"
+      },
+      {
+        "word": "require",
+        "cn": "需要"
+      },
+      {
+        "word": "voice",
+        "cn": "声音"
+      },
+      {
+        "word": "skirt",
+        "cn": "裙角"
+      },
+      {
+        "word": "guess",
+        "cn": "猜"
+      }
+    ],
+    "style": "荒诞脑洞",
+    "story": "邮递员送来一封需要签收的信，但收件人却坚持要听声音确认，于是邮递员扯着裙角大声朗读，收信人猜了半天也没猜出是谁。",
+    "rating": null,
+    "feature": "",
+    "uid": "wts_msgbckytj6k02r",
+    "name": "申哲的笔记本电脑",
+    "source": "",
+    "seq": 23
   }
 ]
