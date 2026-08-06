@@ -134,5 +134,39 @@
     "name": "申哲的手机",
     "source": "example",
     "seq": 4
+  },
+  {
+    "id": "msgrhrroou33s",
+    "ts": "2026-08-06 08:12:31",
+    "words": [
+      {
+        "word": "into",
+        "cn": "游进"
+      },
+      {
+        "word": "president",
+        "cn": "总统"
+      },
+      {
+        "word": "develop",
+        "cn": "发展"
+      },
+      {
+        "word": "dish",
+        "cn": "菜"
+      },
+      {
+        "word": "well",
+        "cn": "井"
+      }
+    ],
+    "style": "荒诞脑洞",
+    "story": "一条鱼游进大海，遇见了海豚总统，总统决定发展一道新菜，但厨师不小心把菜掉进了井里。",
+    "rating": null,
+    "feature": "",
+    "uid": "wts_msgbckytj6k02r",
+    "name": "申哲的笔记本电脑",
+    "source": "",
+    "seq": 5
   }
 ]
