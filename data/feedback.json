@@ -2659,5 +2659,39 @@
     "name": "",
     "source": "",
     "seq": 81
+  },
+  {
+    "id": "msi6tqg3xfnuw",
+    "ts": "2026-08-07 08:09:30",
+    "words": [
+      {
+        "word": "daughter",
+        "cn": "女儿"
+      },
+      {
+        "word": "seem",
+        "cn": "觉得"
+      },
+      {
+        "word": "invention",
+        "cn": "新发明"
+      },
+      {
+        "word": "visitor",
+        "cn": "来访的客人"
+      },
+      {
+        "word": "pilot",
+        "cn": "飞行员"
+      }
+    ],
+    "style": "荒诞脑洞",
+    "story": "女儿觉得父亲的新发明看起来像个飞行员头盔，正想嘲笑，来访的客人却戴上它，瞬间消失不见，仿佛成了时间旅行者。",
+    "rating": null,
+    "feature": "",
+    "uid": "wts_msi6psts1p9e04",
+    "name": "",
+    "source": "",
+    "seq": 82
   }
 ]
