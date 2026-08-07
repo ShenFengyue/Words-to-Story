@@ -2761,5 +2761,39 @@
     "name": "",
     "source": "",
     "seq": 84
+  },
+  {
+    "id": "msi6yxt4pquog",
+    "ts": "2026-08-07 08:13:33",
+    "words": [
+      {
+        "word": "boat",
+        "cn": "船"
+      },
+      {
+        "word": "realise",
+        "cn": "意识到"
+      },
+      {
+        "word": "desk",
+        "cn": "办公桌"
+      },
+      {
+        "word": "start",
+        "cn": "开始"
+      },
+      {
+        "word": "remain",
+        "cn": "保持原样"
+      }
+    ],
+    "style": "荒诞脑洞",
+    "story": "一艘船在海上漂了三天，船长终于意识到自己其实一直停在码头。他回到办公桌前，决定重新开始航海计划，但桌上的旧计划书却仍然保持原样。",
+    "rating": null,
+    "feature": "",
+    "uid": "wts_msi6psts1p9e04",
+    "name": "",
+    "source": "",
+    "seq": 85
   }
 ]
