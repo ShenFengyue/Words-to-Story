@@ -3792,5 +3792,39 @@
     "name": "从申哲电脑的微信打开",
     "source": "example",
     "seq": 116
+  },
+  {
+    "id": "msida6oex9qkc",
+    "ts": "2026-08-07 11:10:17",
+    "words": [
+      {
+        "word": "locket",
+        "cn": "锁饰"
+      },
+      {
+        "word": "crimson",
+        "cn": "深红色的"
+      },
+      {
+        "word": "comet",
+        "cn": "彗星"
+      },
+      {
+        "word": "fable",
+        "cn": "寓言"
+      },
+      {
+        "word": "feather",
+        "cn": "羽毛"
+      }
+    ],
+    "style": "荒诞脑洞",
+    "story": "她打开祖母留下的旧锁饰，里面藏着一颗深红色的彗星，说那其实是某本寓言里飘出的羽毛，用来照亮夜空。",
+    "rating": null,
+    "feature": "",
+    "uid": "wts_msgbvc683crui3",
+    "name": "申哲的手机",
+    "source": "example",
+    "seq": 117
   }
 ]
