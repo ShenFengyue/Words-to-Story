@@ -2897,5 +2897,39 @@
     "name": "",
     "source": "",
     "seq": 88
+  },
+  {
+    "id": "msi76h40fel0j",
+    "ts": "2026-08-07 08:19:24",
+    "words": [
+      {
+        "word": "lamb",
+        "cn": "小羊"
+      },
+      {
+        "word": "print",
+        "cn": "打印"
+      },
+      {
+        "word": "sick",
+        "cn": "生病"
+      },
+      {
+        "word": "trousers",
+        "cn": "裤子"
+      },
+      {
+        "word": "show",
+        "cn": "时装秀"
+      }
+    ],
+    "style": "荒诞脑洞",
+    "story": "一只生病的小羊在打印店打印裤子，却意外打印出了一场时装秀，商场里的观众纷纷鼓掌叫好。",
+    "rating": null,
+    "feature": "",
+    "uid": "wts_msi6psts1p9e04",
+    "name": "",
+    "source": "",
+    "seq": 89
   }
 ]
