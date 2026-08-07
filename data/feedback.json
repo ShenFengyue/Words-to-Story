@@ -2591,5 +2591,39 @@
     "name": "申哲的手机",
     "source": "example",
     "seq": 79
+  },
+  {
+    "id": "msi6pstrslg80",
+    "ts": "2026-08-07 08:06:26",
+    "words": [
+      {
+        "word": "development",
+        "cn": "开发"
+      },
+      {
+        "word": "lion",
+        "cn": "狮子"
+      },
+      {
+        "word": "these",
+        "cn": "这个"
+      },
+      {
+        "word": "century",
+        "cn": "世纪"
+      },
+      {
+        "word": "festival",
+        "cn": "节日"
+      }
+    ],
+    "style": "荒诞脑洞",
+    "story": "这个世纪，人们为了开发新节日，把狮子训练成了园艺师。它们在广场上表演用鬃毛修剪草坪，结果不小心把整个公园修剪成了狮子形状。",
+    "rating": null,
+    "feature": "",
+    "uid": "wts_msi6psts1p9e04",
+    "name": "",
+    "source": "",
+    "seq": 80
   }
 ]
