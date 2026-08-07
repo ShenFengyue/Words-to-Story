@@ -2625,5 +2625,39 @@
     "name": "",
     "source": "",
     "seq": 80
+  },
+  {
+    "id": "msi6pyzcp3o3n",
+    "ts": "2026-08-07 08:06:35",
+    "words": [
+      {
+        "word": "development",
+        "cn": "发展"
+      },
+      {
+        "word": "lion",
+        "cn": "狮子"
+      },
+      {
+        "word": "these",
+        "cn": "这"
+      },
+      {
+        "word": "century",
+        "cn": "世纪"
+      },
+      {
+        "word": "festival",
+        "cn": "节日"
+      }
+    ],
+    "style": "荒诞脑洞",
+    "story": "狮子为了庆祝这世纪的到来，举办了一场盛大的节日，但没想到这一切都是狮子精心策划的阴谋，目的是为了推动自己的发展。",
+    "rating": null,
+    "feature": "",
+    "uid": "wts_msi6psts1p9e04",
+    "name": "",
+    "source": "",
+    "seq": 81
   }
 ]
