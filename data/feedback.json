@@ -3839,5 +3839,39 @@
     "name": "申哲的笔记本电脑",
     "source": "example",
     "seq": 118
+  },
+  {
+    "id": "msie684aisu89",
+    "ts": "2026-08-07 11:35:10",
+    "words": [
+      {
+        "word": "feather",
+        "cn": "羽毛"
+      },
+      {
+        "word": "violet",
+        "cn": "紫罗兰"
+      },
+      {
+        "word": "winter",
+        "cn": "冬天"
+      },
+      {
+        "word": "throne",
+        "cn": "王座"
+      },
+      {
+        "word": "fable",
+        "cn": "寓言"
+      }
+    ],
+    "style": "荒诞脑洞",
+    "story": "冬天，国王坐在王座上，却捡起一根羽毛，讲述了一个关于紫罗兰的寓言。",
+    "rating": null,
+    "feature": "",
+    "uid": "wts_msi6psts1p9e04",
+    "name": "从申哲电脑的微信打开",
+    "source": "example",
+    "seq": 119
   }
 ]
