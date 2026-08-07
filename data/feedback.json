@@ -3577,5 +3577,39 @@
     "name": "申哲的笔记本电脑",
     "source": "",
     "seq": 108
+  },
+  {
+    "id": "msi8ug6hdhjda",
+    "ts": "2026-08-07 09:06:02",
+    "words": [
+      {
+        "word": "doll",
+        "cn": "山羊"
+      },
+      {
+        "word": "goat",
+        "cn": "误饮"
+      },
+      {
+        "word": "blood",
+        "cn": "人血"
+      },
+      {
+        "word": "cafe",
+        "cn": "咖啡馆"
+      },
+      {
+        "word": "mistake",
+        "cn": "错误"
+      }
+    ],
+    "style": "荒诞脑洞",
+    "story": "在咖啡馆里，一只山羊误饮了人血，导致它开始模仿人类点单，却把糖当成了盐，这个错误成了咖啡师眼中的荒诞杰作。",
+    "rating": null,
+    "feature": "",
+    "uid": "wts_msgbckytj6k02r",
+    "name": "申哲的笔记本电脑",
+    "source": "",
+    "seq": 109
   }
 ]
