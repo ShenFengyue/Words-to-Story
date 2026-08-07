@@ -2829,5 +2829,39 @@
     "name": "",
     "source": "",
     "seq": 86
+  },
+  {
+    "id": "msi71scb4huzl",
+    "ts": "2026-08-07 08:15:46",
+    "words": [
+      {
+        "word": "film",
+        "cn": "电影"
+      },
+      {
+        "word": "busy",
+        "cn": "忙碌"
+      },
+      {
+        "word": "whatever",
+        "cn": "whatever"
+      },
+      {
+        "word": "side",
+        "cn": "侧边"
+      },
+      {
+        "word": "shut",
+        "cn": "关掉"
+      }
+    ],
+    "style": "荒诞脑洞",
+    "story": "电影院里，一只忙碌的老鼠正忙着关掉所有侧边的窗户。观众们喊“whatever”，但老鼠只是把每一扇窗都关得紧紧的。直到散场，大家才发现，电影其实是一部关于“关窗”的纪录片。",
+    "rating": null,
+    "feature": "",
+    "uid": "wts_msi6psts1p9e04",
+    "name": "",
+    "source": "",
+    "seq": 87
   }
 ]
