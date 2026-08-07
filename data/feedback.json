@@ -2965,5 +2965,39 @@
     "name": "",
     "source": "",
     "seq": 90
+  },
+  {
+    "id": "msi79wanun2l9",
+    "ts": "2026-08-07 08:22:04",
+    "words": [
+      {
+        "word": "fall",
+        "cn": "推平"
+      },
+      {
+        "word": "hill",
+        "cn": "小山"
+      },
+      {
+        "word": "task",
+        "cn": "任务"
+      },
+      {
+        "word": "board",
+        "cn": "黑板"
+      },
+      {
+        "word": "third",
+        "cn": "第三块"
+      }
+    ],
+    "style": "荒诞脑洞",
+    "story": "小王接到任务，要把小山推平。他拿起黑板擦，却把写满计划的第三块黑板擦得干干净净。原来，任务就是擦干净这块黑板。",
+    "rating": null,
+    "feature": "",
+    "uid": "wts_msi6psts1p9e04",
+    "name": "",
+    "source": "",
+    "seq": 91
   }
 ]
