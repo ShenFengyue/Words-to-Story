@@ -3941,5 +3941,39 @@
     "name": "申哲的笔记本电脑",
     "source": "example",
     "seq": 121
+  },
+  {
+    "id": "msj040bd8hqez",
+    "ts": "2026-08-07 21:49:17",
+    "words": [
+      {
+        "word": "crimson",
+        "cn": "猩红"
+      },
+      {
+        "word": "autumn",
+        "cn": "深秋"
+      },
+      {
+        "word": "asylum",
+        "cn": "疯人院"
+      },
+      {
+        "word": "storm",
+        "cn": "风暴"
+      },
+      {
+        "word": "throne",
+        "cn": "王座"
+      }
+    ],
+    "style": "荒诞脑洞",
+    "story": "深秋时节，一场风暴把疯人院的围墙吹倒了，院长看着满院的猩红枫叶，突然觉得这地方比王座还尊贵，于是宣布改名为“枫叶疗养院”。",
+    "rating": null,
+    "feature": "",
+    "uid": "wts_msgbckytj6k02r",
+    "name": "申哲的笔记本电脑",
+    "source": "example",
+    "seq": 122
   }
 ]
