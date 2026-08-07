@@ -3907,5 +3907,39 @@
     "name": "从申哲电脑的微信打开",
     "source": "example",
     "seq": 120
+  },
+  {
+    "id": "msime16z8kwk9",
+    "ts": "2026-08-07 15:25:11",
+    "words": [
+      {
+        "word": "embers",
+        "cn": "余烬"
+      },
+      {
+        "word": "wander",
+        "cn": "流浪"
+      },
+      {
+        "word": "ribbon",
+        "cn": "丝带"
+      },
+      {
+        "word": "serpent",
+        "cn": "蛇"
+      },
+      {
+        "word": "asylum",
+        "cn": "疯人院"
+      }
+    ],
+    "style": "荒诞脑洞",
+    "story": "余烬中，一只流浪的猫用丝带缠住蛇，把它送进了疯人院。",
+    "rating": null,
+    "feature": "",
+    "uid": "wts_msgbckytj6k02r",
+    "name": "申哲的笔记本电脑",
+    "source": "example",
+    "seq": 121
   }
 ]
