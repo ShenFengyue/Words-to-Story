@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Words to Story · 把单词变成故事</title>
+  <meta name="description" content="Made by Grayson Shen" />
+  <style>
+    :root {
+      /* 深黑 · 暖白 · 香槟金 —— 克制、文学 */
+      --bg: #08090c;
+      --ink: #ECE7D9;          /* 暖白 */
+      --ink-soft: rgba(236, 231, 217, 0.58);
+      --ink-faint: rgba(236, 231, 217, 0.34);
+      --gold: #D9B26A;
+      --gold-soft: rgba(217, 178, 106, 0.42);
+      --hair: rgba(236, 231, 217, 0.12);
+      --rose: #D9917A;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Microsoft YaHei", sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      min-height: 100vh;
+      padding: 0 22px 80px;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      position: relative;
+      overflow-x: hidden;
+    }
+    /* 极淡的顶部 + 底角暖光 */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(1000px 520px at 50% -12%, rgba(217, 178, 106, 0.07), transparent 60%),
+        radial-gradient(640px 420px at 94% 88%, rgba(217, 178, 106, 0.08), transparent 65%),
+        radial-gradient(520px 340px at 6% 82%, rgba(236, 231, 217, 0.05), transparent 58%);
+      pointer-events: none;
+      z-index: 0;
+    }
+    /* 两侧点缀 —— 浮尘光点 + 极细竖线光泽，像旧书页边缘的微光 */
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background-image:
+        /* 左侧竖线光泽 —— 一条极淡的金色细线 */
+        linear-gradient(180deg, transparent 6%, rgba(217,178,106,0.10) 28%, rgba(217,178,106,0.14) 52%, rgba(217,178,106,0.08) 76%, transparent 94%),
+        /* 右侧竖线光泽 */
+        linear-gradient(180deg, transparent 3%, rgba(217,178,106,0.09) 24%, rgba(217,178,106,0.15) 48%, rgba(217,178,106,0.07) 72%, transparent 96%),
+        /* 浮尘 —— 靠近边缘、大小不一的光点 */
+        radial-gradient(1.5px 1.5px at 5vw 18vh, rgba(236,231,217,0.50), transparent),
+        radial-gradient(1px 1px at 95vw 14vh, rgba(236,231,217,0.42), transparent),
+        radial-gradient(2px 2px at 93vw 48vh, rgba(217,178,106,0.55), transparent),
+        radial-gradient(1.5px 1.5px at 7vw 54vh, rgba(236,231,217,0.38), transparent),
+        radial-gradient(1px 1px at 97vw 72vh, rgba(236,231,217,0.48), transparent),
+        radial-gradient(2.5px 2.5px at 4vw 36vh, rgba(217,178,106,0.44), transparent),
+        radial-gradient(1px 1px at 90vw 80vh, rgba(236,231,217,0.35), transparent),
+        radial-gradient(1.5px 1.5px at 10vw 74vh, rgba(236,231,217,0.42), transparent),
+        radial-gradient(1px 1px at 6vw 8vh, rgba(236,231,217,0.28), transparent),
+        radial-gradient(2px 2px at 94vw 38vh, rgba(217,178,106,0.40), transparent),
+        radial-gradient(1.5px 1.5px at 3vw 66vh, rgba(236,231,217,0.30), transparent),
+        radial-gradient(1px 1px at 98vw 86vh, rgba(236,231,217,0.36), transparent),
+        radial-gradient(2px 2px at 8vw 90vh, rgba(217,178,106,0.38), transparent),
+        radial-gradient(1px 1px at 92vw 10vh, rgba(236,231,217,0.32), transparent),
+        radial-gradient(1.5px 1.5px at 12vw 44vh, rgba(236,231,217,0.26), transparent),
+        radial-gradient(1px 1px at 88vw 62vh, rgba(217,178,106,0.30), transparent);
+      background-size:
+        1px 100%, 1px 100%,
+        auto, auto, auto, auto, auto, auto,
+        auto, auto, auto, auto, auto, auto,
+        auto, auto, auto, auto;
+      background-position:
+        4vw 0, 96vw 0,
+        0 0, 0 0, 0 0, 0 0, 0 0, 0 0,
+        0 0, 0 0, 0 0, 0 0, 0 0, 0 0,
+        0 0, 0 0, 0 0, 0 0;
+      background-repeat: no-repeat;
+    }
+    .wrap { position: relative; z-index: 1; max-width: 640px; margin: 0 auto; }
+
+    @keyframes fadein {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: none; }
+    }
+
+    /* ===== 第一屏 ===== */
+    .hero {
+      min-height: 86vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 8vh 0 4vh;
+    }
+    .hero h1 {
+      font-size: 46px;
+      font-weight: 300;
+      letter-spacing: 3px;
+      color: var(--ink);
+      line-height: 1.25;
+    }
+    .hero .en {
+      margin-top: 18px;
+      font-size: 12px;
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .hero .poetic {
+      margin-top: 26px;
+      font-family: "Songti SC", "STSong", "Source Han Serif SC", "Noto Serif SC", Georgia, serif;
+      font-size: 18px;
+      letter-spacing: 4px;
+      color: var(--ink-soft);
+    }
+
+    /* 创作入口：一条发丝金线，而非表单 */
+    .compose { width: 100%; max-width: 520px; margin: 46px auto 0; }
+    .portal {
+      width: 100%;
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid var(--gold-soft);
+      color: var(--ink);
+      font-size: 19px;
+      letter-spacing: 1px;
+      text-align: center;
+      padding: 16px 6px 18px;
+      outline: none;
+      resize: none;
+      font-family: inherit;
+      line-height: 1.7;
+      transition: border-color 0.35s ease;
+    }
+    .portal::placeholder { color: var(--ink-faint); letter-spacing: 2px; }
+    .portal:focus { border-bottom-color: var(--gold); }
+
+    .gen {
+      display: block;
+      margin: 34px auto 0;
+      background: transparent;
+      border: 1px solid var(--gold-soft);
+      color: var(--gold);
+      padding: 13px 40px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 4px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: inherit;
+    }
+    .gen:hover:not(:disabled) { background: var(--gold); color: #1a1405; border-color: var(--gold); }
+    .gen:disabled { opacity: 0.45; cursor: default; }
+
+    .hint {
+      margin: 22px auto 0;
+      text-align: center;
+      color: var(--rose);
+      font-size: 13px;
+      letter-spacing: 1px;
+      min-height: 16px;
+    }
+
+    /* 次级功能：首次生成后悄然浮现 */
+    .secondary { display: none; margin-top: 40px; }
+    .secondary.show { display: block; animation: fadein 0.6s ease both; }
+    .styles {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 24px;
+    }
+    .chip {
+      background: none;
+      border: none;
+      color: var(--ink-soft);
+      font-size: 14px;
+      letter-spacing: 2px;
+      cursor: pointer;
+      padding: 4px 0;
+      transition: color 0.25s ease;
+      font-family: inherit;
+    }
+    .chip:hover { color: var(--ink); }
+    .chip.active { color: var(--gold); border-bottom: 1px solid var(--gold); }
+
+    .example {
+      display: block;
+      margin: 22px auto 0;
+      background: none;
+      border: none;
+      color: var(--ink-faint);
+      font-size: 13px;
+      letter-spacing: 2px;
+      cursor: pointer;
+      font-family: inherit;
+      transition: color 0.25s ease;
+    }
+    .example:hover { color: var(--ink-soft); }
+
+    /* ===== 结果：一页文学作品 ===== */
+    .result { display: none; margin-top: 14vh; }
+    .result.show { display: block; animation: fadein 0.7s ease both; }
+    .rule {
+      width: 36px;
+      height: 1px;
+      background: var(--gold);
+      margin: 0 auto 34px;
+      opacity: 0.7;
+    }
+    .story {
+      font-family: "Songti SC", "STSong", "Source Han Serif SC", "Noto Serif SC", Georgia, serif;
+      font-size: 21px;
+      line-height: 2.15;
+      letter-spacing: 1px;
+      color: var(--ink);
+      text-align: left;
+    }
+    .story.placeholder {
+      text-align: center;
+      font-family: inherit;
+      font-size: 15px;
+      letter-spacing: 3px;
+      color: var(--ink-faint);
+    }
+    .story mark {
+      background: none;
+      color: inherit;
+      font-weight: 600;
+      text-decoration: underline;
+      text-decoration-color: var(--gold);
+      text-decoration-thickness: 2px;
+      text-underline-offset: 5px;
+    }
+
+    .words-line {
+      margin-top: 38px;
+      text-align: center;
+      font-size: 13px;
+      letter-spacing: 1px;
+      color: var(--ink-faint);
+    }
+    .words-line b { color: var(--gold); font-weight: 500; cursor: pointer; border-bottom: 1px dashed var(--gold-soft); transition: border-color 0.25s ease; }
+    .words-line b:hover { border-bottom-color: var(--gold); }
+
+    /* ===== 单词详情覆盖层 ===== */
+    .word-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(8, 9, 12, 0.94);
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+    .word-overlay.show { opacity: 1; visibility: visible; }
+
+    .word-card {
+      width: 100%;
+      max-width: 560px;
+      max-height: 88vh;
+      overflow-y: auto;
+      animation: fadein 0.4s ease both;
+    }
+
+    .word-back {
+      background: none;
+      border: none;
+      color: var(--ink-faint);
+      font-size: 13px;
+      letter-spacing: 2px;
+      cursor: pointer;
+      font-family: inherit;
+      margin-bottom: 24px;
+      transition: color 0.25s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .word-back:hover { color: var(--ink); }
+
+    .word-title {
+      text-align: center;
+      font-size: 48px;
+      font-weight: 300;
+      letter-spacing: 3px;
+      color: var(--gold);
+      margin-bottom: 8px;
+      font-family: "Songti SC", "STSong", "Source Han Serif SC", "Noto Serif SC", Georgia, serif;
+    }
+    .word-title-loading {
+      text-align: center;
+      font-size: 22px;
+      letter-spacing: 3px;
+      color: var(--ink-faint);
+      padding: 60px 0;
+    }
+
+    .word-section {
+      margin-top: 28px;
+      border-top: 1px solid var(--hair);
+      padding-top: 20px;
+    }
+    .word-section-title {
+      font-size: 13px;
+      letter-spacing: 3px;
+      color: var(--ink-faint);
+      margin-bottom: 14px;
+      text-align: center;
+    }
+    .word-form-item,
+    .word-collo-item,
+    .word-example-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 16px;
+      padding: 8px 0;
+      font-size: 15px;
+      letter-spacing: 1px;
+    }
+    .word-form-item .en,
+    .word-collo-item .en,
+    .word-example-item .en {
+      color: var(--ink);
+      font-family: Georgia, "Songti SC", serif;
+    }
+    .word-form-item .cn,
+    .word-collo-item .cn,
+    .word-example-item .cn {
+      color: var(--ink-faint);
+      font-size: 13px;
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    .feedback {
+      margin-top: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 22px;
+      flex-wrap: wrap;
+    }
+    .fb-label { font-size: 13px; letter-spacing: 2px; color: var(--ink-faint); }
+    .fb-btn {
+      background: none;
+      border: none;
+      color: var(--ink-soft);
+      font-size: 14px;
+      letter-spacing: 2px;
+      cursor: pointer;
+      transition: color 0.25s ease;
+      font-family: inherit;
+    }
+    .fb-btn:hover { color: var(--ink); }
+    .fb-btn.good.chosen { color: var(--gold); }
+    .fb-btn.bad.chosen { color: var(--rose); }
+    .fb-state { font-size: 13px; letter-spacing: 1px; color: var(--gold); }
+
+    .regen {
+      display: block;
+      margin: 46px auto 0;
+      background: none;
+      border: none;
+      color: var(--ink-faint);
+      font-size: 13px;
+      letter-spacing: 3px;
+      cursor: pointer;
+      font-family: inherit;
+      transition: color 0.25s ease;
+    }
+    .regen:hover { color: var(--ink-soft); }
+
+    .actions {
+      margin-top: 46px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .actions .regen { display: inline; margin: 0; }
+    .sep { color: var(--ink-faint); font-size: 12px; user-select: none; }
+
+    .foot {
+      margin-top: 18vh;
+      text-align: center;
+      color: var(--ink-faint);
+      font-size: 11px;
+      letter-spacing: 3px;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="hero">
+      <h1>Words to Story</h1>
+      <div class="en">Designed by Grayson Shen in Hangzhou</div>
+      <div class="poetic">每个单词之间，要有一个空格</div>
+
+      <div class="compose">
+        <textarea id="words" class="portal" rows="1" placeholder="投入几个词……"></textarea>
+        <button id="genBtn" class="gen" type="button">开 始</button>
+        <button id="exampleBtn" class="example" type="button">试一个示例</button>
+        <p class="hint" id="hint"></p>
+      </div>
+    </header>
+
+    <section class="secondary" id="secondary">
+      <div class="styles" id="chips">
+        <button class="chip active" data-style="荒诞脑洞" type="button">荒诞脑洞</button>
+        <button class="chip" data-style="温馨治愈" type="button">温馨治愈</button>
+        <button class="chip" data-style="悬疑推理" type="button">悬疑推理</button>
+        <button class="chip" data-style="童话奇遇" type="button">童话奇遇</button>
+      </div>
+    </section>
+
+    <section class="result" id="result">
+      <div class="rule"></div>
+      <p class="story placeholder" id="story">正在生长……</p>
+      <div class="words-line" id="wordlist"></div>
+      <div class="feedback" id="feedback">
+        <span class="fb-label">这个故事怎么样</span>
+        <button id="goodBtn" class="fb-btn good" type="button">夯 👍</button>
+        <button id="badBtn" class="fb-btn bad" type="button">拉 👎</button>
+        <span class="fb-state" id="fbState"></span>
+      </div>
+      <div class="actions" id="actions">
+        <button id="regenBtn" class="regen" type="button">再生成一次</button>
+        <span class="sep">·</span>
+        <button id="copyBtn" class="regen" type="button">复制故事</button>
+        <span class="sep">·</span>
+        <button id="newBtn" class="regen" type="button">换一组词</button>
+      </div>
+    </section>
+
+    <!-- 单词详情覆盖层 -->
+    <div class="word-overlay" id="wordOverlay">
+      <div class="word-card" id="wordCard">
+        <button class="word-back" id="wordBack" type="button">← 返回</button>
+        <div id="wordContent"></div>
+      </div>
+    </div>
+
+    <footer class="foot">Connecting People, Creating Value</footer>
+  </div>
+
+  <script>
+    const $ = (s) => document.querySelector(s);
+    const wordsEl = $('#words');
+    const genBtn = $('#genBtn');
+    const hint = $('#hint');
+    const resultEl = $('#result');
+    const storyEl = $('#story');
+    const wordlistEl = $('#wordlist');
+    const exampleBtn = $('#exampleBtn');
+    const chipsEl = $('#chips');
+    const secondaryEl = $('#secondary');
+    const feedbackEl = $('#feedback');
+    const goodBtn = $('#goodBtn');
+    const badBtn = $('#badBtn');
+    const fbState = $('#fbState');
+    const regenBtn = $('#regenBtn');
+    const copyBtn = $('#copyBtn');
+    const newBtn = $('#newBtn');
+    const actionsEl = $('#actions');
+
+    let style = '荒诞脑洞';
+    let currentResult = null; // {id, story, words, style}
+    let secondaryShown = false;
+    let currentStoryText = '';
+    let isExample = false; // 是否来自「试一个示例」
+
+    // ===== 用户识别：localStorage 自动生成 UID + 可选名字 =====
+    function getUID() {
+      let uid = localStorage.getItem('wts_uid');
+      if (!uid) {
+        uid = 'wts_' + Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
+        localStorage.setItem('wts_uid', uid);
+      }
+      return uid;
+    }
+
+    chipsEl.addEventListener('click', (e) => {
+      const c = e.target.closest('.chip');
+      if (!c) return;
+      [...chipsEl.children].forEach((x) => x.classList.remove('active'));
+      c.classList.add('active');
+      style = c.dataset.style;
+    });
+
+    exampleBtn.addEventListener('click', () => {
+      const pool = [
+        'moon', 'silence', 'bridge', 'autumn', 'whisper',
+        'storm', 'mirror', 'candle', 'winter', 'hollow',
+        'thunder', 'garden', 'velvet', 'shadow', 'marble',
+        'feather', 'ocean', 'embers', 'lantern', 'silver',
+        'throne', 'ribbon', 'frost', 'anchor', 'riddle',
+        'phantom', 'crimson', 'locket', 'horizon', 'wander',
+        'serpent', 'orchard', 'prison', 'canvas', 'petal',
+        'fortune', 'dagger', 'fossil', 'balcony', 'compass',
+        'echo', 'violet', 'spiral', 'fable', 'timber',
+        'embers', 'pilgrim', 'sickle', 'lagoon', 'asylum',
+        'velvet', 'dagger', 'comet', 'thistle', 'voyage',
+      ];
+      const shuffled = pool.sort(() => Math.random() - 0.5);
+      wordsEl.value = shuffled.slice(0, 5).join(', ');
+      hint.textContent = '';
+      wordsEl.focus();
+      isExample = true;
+    });
+
+    // 输入框聚焦时，按 Enter 直接生成；Shift+Enter 才换行
+    wordsEl.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        generate();
+      }
+    });
+
+    function parseWords(raw) {
+      return raw
+        .split(/[\s,，;；\n]+/)
+        .map((w) => w.trim().toLowerCase())
+        .filter(Boolean);
+    }
+
+    genBtn.addEventListener('click', generate);
+
+    // 「再生成一次」：用同一组词重新生成
+    regenBtn.addEventListener('click', () => {
+      if (!genBtn.disabled) generate();
+    });
+
+    // 「换一组词」：清空输入、回到首屏
+    newBtn.addEventListener('click', () => {
+      wordsEl.value = '';
+      hint.textContent = '';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      wordsEl.focus();
+    });
+
+    // 「复制故事」：复制纯文本到剪贴板
+    copyBtn.addEventListener('click', async () => {
+      if (!currentStoryText) return;
+      const original = copyBtn.textContent;
+      try {
+        await navigator.clipboard.writeText(currentStoryText);
+      } catch (e) {
+        const ta = document.createElement('textarea');
+        ta.value = currentStoryText;
+        document.body.appendChild(ta);
+        ta.select();
+        try { document.execCommand('copy'); } catch (_) {}
+        document.body.removeChild(ta);
+      }
+      copyBtn.textContent = '已复制 ✓';
+      setTimeout(() => { copyBtn.textContent = original; }, 1600);
+    });
+
+    async function generate() {
+      if (genBtn.disabled) return;
+      const words = parseWords(wordsEl.value);
+      if (words.length === 0) {
+        hint.textContent = '请先投入几个词。';
+        return;
+      }
+      if (words.length > 20) {
+        hint.textContent = '最多 20 个词，精简一下。';
+        return;
+      }
+      hint.textContent = '';
+      genBtn.disabled = true;
+      genBtn.textContent = '生 成 中';
+      storyEl.className = 'story placeholder';
+      storyEl.textContent = '正在生长……';
+      wordlistEl.innerHTML = '';
+      feedbackEl.style.visibility = 'hidden';
+      actionsEl.style.visibility = 'hidden';
+      resultEl.classList.add('show');
+      resultEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+      // 首次生成后，悄然浮现风格与示例
+      if (!secondaryShown) {
+        secondaryEl.classList.add('show');
+        secondaryShown = true;
+      }
+
+      try {
+        const res = await fetch('/api/generate', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ words, style }),
+        });
+        if (!res.ok) {
+          let msg = `请求失败（${res.status}）`;
+          try {
+            const d = await res.json();
+            if (d && d.error) msg = d.error;
+          } catch (e) {}
+          throw new Error(msg);
+        }
+
+        const reader = res.body.getReader();
+        const decoder = new TextDecoder();
+        let buf = '';
+        let meta = null;
+        let streamedStory = '';
+        let firstChunk = true;
+        while (true) {
+          const { value, done } = await reader.read();
+          if (done) break;
+          buf += decoder.decode(value, { stream: true });
+          let nl;
+          while ((nl = buf.indexOf('\n')) !== -1) {
+            const line = buf.slice(0, nl);
+            buf = buf.slice(nl + 1);
+            if (!line.trim()) continue;
+            let obj;
+            try { obj = JSON.parse(line); } catch (e) { continue; }
+            if (obj.type === 'chunk') {
+              if (firstChunk) { storyEl.className = 'story'; firstChunk = false; }
+              streamedStory += obj.text;
+              storyEl.textContent = streamedStory;
+            } else if (obj.type === 'meta') {
+              meta = obj;
+            } else if (obj.type === 'error') {
+              throw new Error(obj.error || '生成失败');
+            }
+          }
+        }
+
+        const story = (meta && meta.story) ? meta.story : streamedStory;
+        const wordList = (meta && meta.words) || [];
+        currentStoryText = story;
+        render(story, wordList);
+        showFeedback(story, wordList, style);
+        // 生成完成即保存记录（不等评价）
+        if (currentResult) {
+          fetch('/api/save', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              ...currentResult,
+              uid: getUID(),
+            }),
+          }).catch(() => {});
+        }
+      } catch (err) {
+        hint.textContent = err.message;
+        storyEl.className = 'story placeholder';
+        storyEl.textContent = '……';
+      } finally {
+        genBtn.disabled = false;
+        genBtn.textContent = '生 成';
+        feedbackEl.style.visibility = 'visible';
+        actionsEl.style.visibility = 'visible';
+      }
+    }
+
+    function render(story, words) {
+      const cns = (words || []).map((w) => w.cn).filter(Boolean);
+      storyEl.className = 'story';
+      storyEl.innerHTML = highlight(story, cns);
+      wordlistEl.innerHTML = (words || [])
+        .map((w) => `<b class="word-link" data-word="${esc(w.word)}">${esc(w.word)}</b> → ${esc(w.cn)}`)
+        .join('　·　');
+    }
+
+    function showFeedback(story, wordList, style) {
+      const src = isExample ? 'example' : '';
+      isExample = false; // 只用一次就重置
+      // 彩蛋（无词表）不展示评价按钮，但仍创建 currentResult 以便保存
+      if (!wordList || wordList.length === 0) {
+        feedbackEl.style.display = 'none';
+        currentResult = {
+          id: Date.now().toString(36) + Math.random().toString(36).slice(2, 7),
+          story: story,
+          words: wordList || [],
+          style: style,
+          source: src,
+        };
+        return;
+      }
+      feedbackEl.style.display = '';
+      currentResult = {
+        id: Date.now().toString(36) + Math.random().toString(36).slice(2, 7),
+        story: story,
+        words: wordList,
+        style: style,
+        source: src,
+      };
+      fbState.textContent = '';
+      goodBtn.classList.remove('chosen');
+      badBtn.classList.remove('chosen');
+    }
+
+    async function rate(rating) {
+      if (!currentResult) return;
+      // 乐观 UI：立刻显示已评价，不等服务器
+      fbState.textContent = rating === 'good' ? '已记下 · 夯' : '已记下 · 拉';
+      goodBtn.classList.toggle('chosen', rating === 'good');
+      badBtn.classList.toggle('chosen', rating === 'bad');
+      const payload = { ...currentResult, rating, uid: getUID() };
+      try {
+        const res = await fetch('/api/rate', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+        const d = await res.json().catch(() => ({}));
+        if (!d.ok) {
+          fbState.textContent = '未能保存';
+          goodBtn.classList.remove('chosen');
+          badBtn.classList.remove('chosen');
+        }
+      } catch (e) {
+        fbState.textContent = '网络异常';
+        goodBtn.classList.remove('chosen');
+        badBtn.classList.remove('chosen');
+      }
+    }
+
+    goodBtn.addEventListener('click', () => rate('good'));
+    badBtn.addEventListener('click', () => rate('bad'));
+
+    // ===== 单词详情覆盖层 =====
+    const wordOverlay = $('#wordOverlay');
+    const wordContent = $('#wordContent');
+    const wordBack = $('#wordBack');
+
+    wordlistEl.addEventListener('click', async (e) => {
+      const link = e.target.closest('.word-link');
+      if (!link) return;
+      const word = link.dataset.word;
+      if (!word) return;
+      openWordOverlay(word);
+    });
+
+    wordBack.addEventListener('click', closeWordOverlay);
+    wordOverlay.addEventListener('click', (e) => {
+      if (e.target === wordOverlay) closeWordOverlay();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && wordOverlay.classList.contains('show')) closeWordOverlay();
+    });
+
+    function openWordOverlay(word) {
+      wordContent.innerHTML = '<div class="word-title">' + esc(word) + '</div><div class="word-title-loading">查询中……</div>';
+      wordOverlay.classList.add('show');
+      document.body.style.overflow = 'hidden';
+
+      fetch('/api/word-lookup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ word }),
+      })
+        .then((res) => res.json())
+        .then((d) => {
+          if (!d.ok) throw new Error(d.error || '查询失败');
+          renderWordDetail(word, d.data);
+        })
+        .catch((err) => {
+          wordContent.innerHTML = '<div class="word-title">' + esc(word) + '</div><div class="word-title-loading">查询失败：' + esc(err.message) + '</div>';
+        });
+    }
+
+    function renderWordDetail(word, data) {
+      let html = '<div class="word-title">' + esc(word) + '</div>';
+
+      // 词形变换
+      if (data.word_forms && data.word_forms.length > 0) {
+        html += '<div class="word-section"><div class="word-section-title">词 形 变 换</div>';
+        data.word_forms.forEach((f) => {
+          html += '<div class="word-form-item"><span class="en">' + esc(f.form) + '</span><span class="cn">' + esc(f.cn) + '</span></div>';
+        });
+        html += '</div>';
+      }
+
+      // 常用搭配
+      if (data.collocations && data.collocations.length > 0) {
+        html += '<div class="word-section"><div class="word-section-title">常 用 搭 配</div>';
+        data.collocations.forEach((c) => {
+          html += '<div class="word-collo-item"><span class="en">' + esc(c.en) + '</span><span class="cn">' + esc(c.cn) + '</span></div>';
+        });
+        html += '</div>';
+      }
+
+      // 常用例句
+      if (data.examples && data.examples.length > 0) {
+        html += '<div class="word-section"><div class="word-section-title">常 用 例 句</div>';
+        data.examples.forEach((e) => {
+          html += '<div class="word-example-item"><span class="en">' + esc(e.en) + '</span><span class="cn">' + esc(e.cn) + '</span></div>';
+        });
+        html += '</div>';
+      }
+
+      wordContent.innerHTML = html;
+    }
+
+    function closeWordOverlay() {
+      wordOverlay.classList.remove('show');
+      document.body.style.overflow = '';
+    }
+
+    function esc(s) {
+      return String(s).replace(/[&<>"']/g, (m) => ({
+        '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
+      }[m]));
+    }
+
+    // 高亮：把中文词在故事中原样 <mark> 包裹，处理重叠（优先长词）
+    function highlight(text, cns) {
+      const list = [...new Set(cns)].filter(Boolean).sort((a, b) => b.length - a.length);
+      const matches = [];
+      list.forEach((cn) => {
+        let i = text.indexOf(cn);
+        while (i !== -1) {
+          matches.push([i, i + cn.length]);
+          i = text.indexOf(cn, i + cn.length);
+        }
+      });
+      matches.sort((a, b) => a[0] - b[0] || (b[1] - b[0]) - (a[1] - a[0]));
+      let out = '';
+      let last = 0;
+      for (const [s, e] of matches) {
+        if (s < last) continue;
+        out += esc(text.slice(last, s)) + '<mark>' + esc(text.slice(s, e)) + '</mark>';
+        last = e;
+      }
+      out += esc(text.slice(last));
+      return out;
+    }
+  </script>
+</body>
+</html>
