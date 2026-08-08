@@ -3975,5 +3975,39 @@
     "name": "申哲的笔记本电脑",
     "source": "example",
     "seq": 122
+  },
+  {
+    "id": "msk2x59b51kjr",
+    "ts": "2026-08-08 15:55:45",
+    "words": [
+      {
+        "word": "feather",
+        "cn": "羽毛"
+      },
+      {
+        "word": "petal",
+        "cn": "花瓣"
+      },
+      {
+        "word": "ribbon",
+        "cn": "丝带"
+      },
+      {
+        "word": "horizon",
+        "cn": "地平线"
+      },
+      {
+        "word": "velvet",
+        "cn": "天鹅绒"
+      }
+    ],
+    "style": "荒诞脑洞",
+    "story": "在天鹅的羽毛上，我看到了一滴露珠，它像花瓣一样轻轻滑落。我捡起一片丝带，系在它的腰间，把它抛向地平线。没想到，它竟然变成了一朵紫色的天鹅绒，覆盖了整片天空。",
+    "rating": null,
+    "feature": "",
+    "uid": "wts_msk2x59chshh63",
+    "name": "",
+    "source": "example",
+    "seq": 123
   }
 ]
