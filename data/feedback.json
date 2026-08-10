@@ -4009,5 +4009,39 @@
     "name": "9chshh63",
     "source": "example",
     "seq": 123
+  },
+  {
+    "id": "msms95wlo0rxx",
+    "ts": "2026-08-10 13:20:27",
+    "words": [
+      {
+        "word": "throne",
+        "cn": "王座"
+      },
+      {
+        "word": "garden",
+        "cn": "花园"
+      },
+      {
+        "word": "crimson",
+        "cn": "深红色"
+      },
+      {
+        "word": "ribbon",
+        "cn": "丝带"
+      },
+      {
+        "word": "whisper",
+        "cn": "轻声"
+      }
+    ],
+    "style": "荒诞脑洞",
+    "story": "王座上的国王在花园里种下了一颗深红色的种子，并用丝带系上标签。他轻声许愿，希望长出一座会说话的城堡。第二天，花园里长出了一朵巨大的花，花瓣上写着：“你的王座其实是个马桶。”",
+    "rating": null,
+    "feature": "",
+    "uid": "wts_msgbckytj6k02r",
+    "name": "申哲的笔记本电脑",
+    "source": "example",
+    "seq": 124
   }
 ]
