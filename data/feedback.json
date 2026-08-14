@@ -4009,39 +4009,5 @@
     "name": "9chshh63",
     "source": "example",
     "seq": 123
-  },
-  {
-    "id": "mspwknc21plf2",
-    "ts": "2026-08-12 17:44:40",
-    "words": [
-      {
-        "word": "horizon",
-        "cn": "地平线"
-      },
-      {
-        "word": "ribbon",
-        "cn": "缎带"
-      },
-      {
-        "word": "prison",
-        "cn": "监狱"
-      },
-      {
-        "word": "bridge",
-        "cn": "大桥"
-      },
-      {
-        "word": "lagoon",
-        "cn": "泻湖"
-      }
-    ],
-    "style": "荒诞脑洞",
-    "story": "地平线管理员因一条断裂的缎带，将整座监狱改造成了跨海大桥，最后，海湾泻湖里的船只都不必绕行了。",
-    "rating": null,
-    "feature": "",
-    "uid": "wts_msgbckytj6k02r",
-    "name": "申哲的笔记本电脑",
-    "source": "example",
-    "seq": 124
   }
 ]
