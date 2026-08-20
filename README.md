@@ -1,5 +1,7 @@
 # 单词故事生成器 · Word to Story
 
+这个简单的小工具，成功帮我赚到好几万元，what the fuck!
+
 **Designed by Grayson Shen in Hangzhou 2026-08-03**
 
 打工用的小工具
