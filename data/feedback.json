@@ -4009,5 +4009,39 @@
     "name": "9chshh63",
     "source": "example",
     "seq": 123
+  },
+  {
+    "id": "mt0rhjruf0gq7",
+    "ts": "2026-08-20 08:07:44",
+    "words": [
+      {
+        "word": "lagoon",
+        "cn": "泻湖"
+      },
+      {
+        "word": "moon",
+        "cn": "月亮"
+      },
+      {
+        "word": "dagger",
+        "cn": "匕首"
+      },
+      {
+        "word": "storm",
+        "cn": "风暴"
+      },
+      {
+        "word": "velvet",
+        "cn": "天鹅绒般的"
+      }
+    ],
+    "style": "荒诞脑洞",
+    "story": "风暴来袭前夜，我带着匕首潜入天鹅绒般的泻湖，想盗取那轮银月做灯。可刚举起匕首，月亮突然跳进湖水，化作千万只天鹅，用翅膀裹住我，说要带我去风暴中心的水晶宫。原来，月亮是风暴的守门人，而我只是它等待的访客。",
+    "rating": null,
+    "feature": "",
+    "uid": "wts_msgbckytj6k02r",
+    "name": "申哲的笔记本电脑",
+    "source": "example",
+    "seq": 124
   }
 ]
