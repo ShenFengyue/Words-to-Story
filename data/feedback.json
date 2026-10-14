@@ -4027,5 +4027,39 @@
     "name": "申哲的笔记本电脑",
     "source": "",
     "seq": 124
+  },
+  {
+    "id": "mv80bmwgt3k3e",
+    "ts": "2026-10-14 19:08:55",
+    "words": [
+      {
+        "word": "lagoon",
+        "cn": "潟湖"
+      },
+      {
+        "word": "autumn",
+        "cn": "秋天"
+      },
+      {
+        "word": "compass",
+        "cn": "指南针"
+      },
+      {
+        "word": "thunder",
+        "cn": "雷"
+      },
+      {
+        "word": "bridge",
+        "cn": "桥"
+      }
+    ],
+    "style": "荒诞脑洞",
+    "story": "秋天，一片落叶飘进潟湖，竟变成一座桥。桥上的指南针突然发疯，指着天空吼了一声雷。从此，每个经过的人都要先交一份秋色，否则桥就缩回湖里。",
+    "rating": null,
+    "feature": "",
+    "uid": "wts_msgbckytj6k02r",
+    "name": "申哲的笔记本电脑",
+    "source": "example",
+    "seq": 125
   }
 ]
